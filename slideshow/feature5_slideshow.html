@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" media="screen" href="/slideshow.css"/>
+        <script type="text/javascript" src="/jquery-1.8.2.min.js"></script>
+        <script type="text/javascript" src="/slides.min.jquery.js"></script>
+        <script type="text/javascript">
+            $(function() {
+                $('#slides').slides({
+                    preload: true,
+                    preloadImage: 'loading.gif',
+                    play: 5000,
+                    pause: 2500,
+                    hoverPause: true,
+                    animationStart: function(current) {
+                        $('.caption').animate({
+                            bottom:-35
+                        }, 100);
+                        if (window.console && console.log) {
+                            console.log('animationStart on slide: ', current);
+                        }
+                    },
+                    animationComplete: function(current) {
+                        $('.caption').animate({
+                            bottom:0
+                        }, 200);
+                        if (window.console && console.log) {
+                            console.log('animationComplete on slide: ', current);
+                        }
+                    },
+                    slidesLoaded: function() {
+                        $('.caption').animate({
+                            bottom:0
+                        }, 200);
+                    }
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div id="slides">
+            <div class="slides_container">
+                <div class="slide">
+                    <img src="/car1.jpg" alt="slide1"/>
+                    <div class="caption" style="bottom:0">
+                        <p>Car description goes here.</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="/car2.jpg" alt="slide2"/>
+                    <div class="caption" style="bottom:0">
+                        <p>Car description goes here.</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="/car3.jpg" alt="slide3"/>
+                    <div class="caption" style="bottom:0">
+                        <p>Car description goes here.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

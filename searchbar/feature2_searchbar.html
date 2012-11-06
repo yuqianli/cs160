@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/visualsearch-datauri.css"/>
+        <script type="text/javascript" src="/dependencies.js"></script>
+        <script type="text/javascript" src="/visualsearch.js"></script>
+    </head>
+    <body>
+        <h1>Core Feature #2: Interactive Searchbar
+        <div class="visual_search"></div>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var searchbar = VS.init({
+                    container: $('.visual_search'),
+                    query: "",
+                    showFacets: true,
+                    callbacks: {
+                        search: function(query, searchCollection) {
+                            var search = '<p>You searched for:</p><p>' + query + '</p>';
+                            document.getElementById('results').innerHTML = search;
+                        },
+                        facetMatches: function(callback) {
+                            callback(['make', 'model', 'year', 'color', 'type']);
+                        },
+                        valueMatches: function(facet, searchTerm, callback) {
+                            switch (facet) {
+                                case 'make':
+                                    callback(['BMW', 'Chevy', 'Dodge', 'Fiat', 'Ford', 'GM', 'Honda', 'Lexus', 'Mazda', 'Mercedes-Benz', 'Nissan', 'Porsche', 'Scion', 'Subaru', 'Toyota', 'Volkswagon']);
+                                    break;
+                                case 'model':
+                                    callback(['todo']);
+                                    break;
+                                case 'year':
+                                    var years = [];
+                                    for (var i = 0; i < 21; i++) {
+                                        years.push("" + (2012-i));
+                                    }
+                                    callback(years);
+                                    break;
+                                case 'color':
+                                    callback(['Black', 'Blue', 'Brown/Tan', 'Gray/Silver', 'Green', 'Red', 'Yellow', 'White']);
+                                    break;
+                                case 'type':
+                                    callback(['Electric', 'Hybrid', 'Sedan', 'SUV']);
+                                    break;
+                            }
+                        }
+                    }
+                });
+                searchbar.searchBox.value("Country: US State: \"New York\" Key: Value");
+            });
+            function getSearch() {
+                alert('nobus');
+            }
+        </script>
+        <div id="results"></div>
+        <p onclick="getSearch()">Click me</p>
+    </body>
+</html>
