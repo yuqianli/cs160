@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Carjackers!</title>
+        <link rel="stylesheet" type="text/css" media="screen" href="static/css/global.css">
+        <link rel="stylesheet" type="text/css" media="screen" href="static/css/visualsearch.css"/>
+        <link rel="stylesheet" type="text/css" media="screen" href="static/css/slideshow.css"/>
+        <script type="text/javascript" src="static/js/jquery-1.8.2.min.js"></script>
+        <script type="text/javascript" src="static/js/visualsearch_dependencies.js"></script>
+        <script type="text/javascript" src="static/js/visualsearch.js"></script>
+        <script type="text/javascript" src="static/js/slides.min.jquery.js"></script>
+    </head>
+    <body>
+        <div id="container">
+            <h1>Carjackers!</h1>
+            <div class="visual_search"></div>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    var searchbar = VS.init({
+                        container: $('.visual_search'),
+                        query: "",
+                        showFacets: true,
+                        callbacks: {
+                            search: function(query, searchCollection) {
+                                var search = '<p>You searched for:</p><p>' + query + '</p>';
+                                document.getElementById('results').innerHTML = search;
+                            },
+                            facetMatches: function(callback) {
+                                callback(['make', 'model', 'year', 'color', 'type']);
+                            },
+                            valueMatches: function(facet, searchTerm, callback) {
+                                switch (facet) {
+                                    case 'make':
+                                        callback(['BMW', 'Chevy', 'Dodge', 'Fiat', 'Ford', 'GM', 'Honda', 'Lexus', 'Mazda', 'Mercedes-Benz', 'Nissan', 'Porsche', 'Scion', 'Subaru', 'Toyota', 'Volkswagon']);
+                                        break;
+                                    case 'model':
+                                        callback(['todo']);
+                                        break;
+                                    case 'year':
+                                        var years = [];
+                                        for (var i = 0; i < 21; i++) {
+                                            years.push("" + (2012-i));
+                                        }
+                                        callback(years);
+                                        break;
+                                    case 'color':
+                                        callback(['Black', 'Blue', 'Brown/Tan', 'Gray/Silver', 'Green', 'Red', 'Yellow', 'White']);
+                                        break;
+                                    case 'type':
+                                        callback(['Electric', 'Hybrid', 'Sedan', 'SUV']);
+                                        break;
+                                }
+                            }
+                        }
+                    });
+                });
+            </script>
+            <div id="results"></div>
+            <script type="text/javascript">
+                $(function() {
+                    $('#slides').slides({
+                        preload: true,
+                        preloadImage: 'static/images/loading.gif',
+                        play: 2000,
+                        pause: 2500,
+                        hoverPause: true,
+                        animationStart: function(current) {
+                            $('.caption').animate({
+                                bottom:-35
+                            }, 100);
+                        },
+                        animationComplete: function(current) {
+                            $('.caption').animate({
+                                bottom:0
+                            }, 200);
+                        },
+                        slidesLoaded: function() {
+                            $('.caption').animate({
+                                bottom:0
+                            }, 200);
+                        }
+                    });
+                });
+            </script>
+            <div id="slides">
+                <div class="slides_container">
+                    <div class="slide">
+                        <img src="static/images/car1.jpg" alt="slide1"/>
+                        <div class="caption" style="bottom:0">
+                            <p>Car description goes here.</p>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="static/images/car2.jpg" alt="slide2"/>
+                        <div class="caption" style="bottom:0">
+                            <p>Car description goes here.</p>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="static/images/car3.jpg" alt="slide3"/>
+                        <div class="caption" style="bottom:0">
+                            <p>Car description goes here.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
