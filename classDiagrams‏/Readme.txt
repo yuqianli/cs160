@@ -1,0 +1,1 @@
+To open the class diagrams, please use Violet UML,  http://alexdp.free.fr/violetumleditor/page.php
