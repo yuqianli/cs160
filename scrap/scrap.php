@@ -13,7 +13,7 @@
     $place = $_POST['place'];
 	$startdate = $_POST['startdate'];
 	$starttime = $_POST['starttime'];
-	$endate = $_POST['enddate'];
+	$enddate = $_POST['enddate'];
 	$endtime = $_POST['endtime'];
 	
 	//error_reporting(E_ERROR | E_WARNING | E_PARSE);
@@ -27,9 +27,9 @@
 						 );
 						 
 	
-	$endate = array( 'a' => substr($endate,0,4),
-						 'b' => substr($endate,5,2),
-						 'c' => substr($endate,8,2)
+	$enddate = array( 'a' => substr($enddate,0,4),
+						 'b' => substr($enddate,5,2),
+						 'c' => substr($enddate,8,2)
 						 );
 	
 	//extract city info
@@ -147,6 +147,8 @@
     $fp = fopen('results.json', 'w');
     fwrite($fp, json_encode($response));
     fclose($fp);
+    
+    include('output.html');
 
         
     $folder->clear();				       
