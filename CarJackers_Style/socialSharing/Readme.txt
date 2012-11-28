@@ -1,1 +1,0 @@
-This just some mock up and testing with it. I think we need to implement it into the search result page!
