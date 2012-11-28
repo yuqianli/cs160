@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>CarJackers!</title>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css"/>
+    <link href="static/css/style.css" rel="stylesheet" type="text/css">
+    <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    <script>
+        $(function() {
+            $('#datepicker').datepicker();
+        });
+    </script>
+</head>
+<body>
+<header>
+	<section id="content">
+		<h1><strong>CAR</strong>JACKERS</h1>
+    </section>
+</header>
+
+<section id="searchbars">
+    <form method="post" action="./scrap.php">
+        <table>
+            <tr>
+                <td>I am a:</td>
+                <td>
+                    <table>
+                        <tr>
+                            <td><input name="type" id="fr1" type="radio" value="passenger" checked>Passenger</td>
+                            <td><input name="type" id="fr1" type="radio" value="driver">Driver</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>From:</td>
+                <td><input name="from" id="fr1" type="text" value="San Francisco, CA"></td>
+            </tr>
+            <tr>
+                <td>To:</td>
+                <td><input name="to" id="fr1" type="text" value="Los Angeles, CA"></td>
+            </tr>
+            <tr>
+                <td>Date:</td>
+                <td><input name="date" type="text" id="datepicker" placeholder="Choose a date"/></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input id="sub" type="submit" value="Search" style="width: 100%;"></td>
+            </tr>
+        </table>
+    </form>
+</section>
+<div style="float: left">
+    <textarea rows="10" cols="75">Maybe put slideshow over here? It's really big.</textarea>
+</div>
+<section id="slide">
+	<div id="slideshow">
+	<ul>
+		<li><img src="static/img/slider1.jpg" alt="slide1" /></li>
+        <li><img src="static/img/slider2.jpg" alt="slide2" /></li>
+        <li><img src="static/img/slider3.jpg" alt="slide3" /></li>
+	</ul>
+    </div>
+    <article>Our Prices are a <b>STEAL!</b> <br/>
+    <a href="" title="">RENT NOW</a>
+    <p>Please click here to Rent!</p></article>   
+    <script src="static/js/craftyslide.min.js"></script>
+    <script>
+        $("#slideshow").craftyslide();
+    </script>    
+    <div id="results"></div>
+        <script>
+        $("document").ready(function() {
+            $.getJSON("results.json", function(data) {
+                var result = [];
+                result.push("<table border='3'>");
+                var urlList = "";
+                $.each(data, function(i, item) {
+                    result.push("<tr>");
+                    result.push("<td id=1>"+item.name+"</td>");
+                    result.push("</td>");
+                    result.push("<td id=2>"+item.originCity+" to "+item.destinationCity+"</td>");
+                    result.push("</tr>");
+                    result.push("<tr>");
+                    result.push("<td id=5>");
+                    result.push("<img src=\""+item.image+"\"/>");
+                    result.push("</td>");
+                    result.push("<td id=3>   "+item.driver+"</td>");
+                    result.push("</tr>");
+                    
+                    result.push("<td id=4>");
+                    result.push("<a href= "+item.link+" target =\"_blank\" >More info here</a>");
+                    result.push("</td>");
+                                        
+                        
+                    result.push("<td id=6>");
+                    result.push(" "+item.price+" a ride on "+item.date);
+                    result.push("</td>");
+                    
+                    result.push("</tr>");
+                });
+                result.push("</table>");
+                $('#results').append(result.join(''));
+            });
+        });
+        </script>
+</section>
+</body>
+</html>
