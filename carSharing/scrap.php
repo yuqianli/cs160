@@ -2,9 +2,13 @@
     // Include the library
     include('simple_html_dom.php');
     
+    $type = $_POST['type'];
     $from = explode(", ", $_POST['from']);
     $to = explode(", ", $_POST['to']);
-    $date = $_POST['date'];
+
+    //re-order date from YYYY-MM-DD to MM-DD-YYYY
+    $date_array = explode('-', $_POST['date']);
+    $date = $date_array[1] . '%2F' . $date_array[2] . '%2F' . $date_array[0];
     
     $fromCity = str_replace(' ', '+', $from[0]);
     $fromState = $from[1];
@@ -14,7 +18,9 @@
     $myFile = "File.json";
     
     // Retrieve the DOM from a given URL
-    $folder = file_get_html("http://www.zimride.com/search?s=$fromCity%2C+$fromState&e=$toCity%2C+$toState&date=11%2F27%2F2012&s_name=$toCity%2C+$toState&s_full_text=$fromCity%2C+$fromState%2C+USA&s_error_code=&s_address=$fromCity%2C+$fromState%2C+USA&s_city=$fromCity&s_state=$fromState&s_zip=&s_country=US&s_lat=37.7749295&s_lng=-122.41941550000001&s_location_key=&s_user_lat=&s_user_lng=&s_user_country=&e_name=$toCity%2C+$toState&e_full_text=$toCity%2C+$toState%2C+USA&e_error_code=&e_address=$toCity%2C+$toState%2C+USA&e_city=$toCity&e_state=$toState&e_zip=&e_country=US&e_lat=34.0522342&e_lng=-118.2436849&e_location_key=&e_user_lat=&e_user_lng=&e_user_country=");
+    $page_url = "http://www.zimride.com/search?s=$fromCity%2C+$fromState&e=$toCity%2C+$toState&date=$date&s_name=$toCity%2C+$toState&s_full_text=$fromCity%2C+$fromState%2C+USA&s_error_code=&s_address=$fromCity%2C+$fromState%2C+USA&s_city=$fromCity&s_state=$fromState&s_zip=&s_country=US&s_lat=&s_lng=&s_location_key=&s_user_lat=&s_user_lng=&s_user_country=&e_name=$toCity%2C+$toState&e_full_text=$toCity%2C+$toState%2C+USA&e_error_code=&e_address=$toCity%2C+$toState%2C+USA&e_city=$toCity&e_state=$toState&e_zip=&e_country=US&e_lat=&e_lng=&e_location_key=&e_user_lat=&e_user_lng=&e_user_country=";
+    echo $page_url;
+    $folder = file_get_html($page_url);
     //echo "http://www.zimride.com/search?s=$fromCity%2C+$fromState&e=$toCity%2C+$toState&date=11%2F27%2F2012&s_name=$toCity%2C+$toState&s_full_text=$fromCity%2C+$fromState%2C+USA&s_error_code=&s_address=$fromCity%2C+$fromState%2C+USA&s_city=$fromCity&s_state=$fromState&s_zip=&s_country=US&s_lat=37.7749295&s_lng=-122.41941550000001&s_location_key=&s_user_lat=&s_user_lng=&s_user_country=&e_name=$toCity%2C+$toState&e_full_text=$toCity%2C+$toState%2C+USA&e_error_code=&e_address=$toCity%2C+$toState%2C+USA&e_city=$toCity&e_state=$toState&e_zip=&e_country=US&e_lat=34.0522342&e_lng=-118.2436849&e_location_key=&e_user_lat=&e_user_lng=&e_user_country=";
     //echo $folder;
     
