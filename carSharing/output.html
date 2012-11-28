@@ -31,23 +31,21 @@ $("document").ready(function() {
 	
     $.getJSON("results.json", function(data) {
 
-        $("#div-my-table").text("<table>");
+        $("#div-my-table").text("<table border='3'>");
 var urlList = "";
         $.each(data, function(i, item) {
 			$("#div-my-tabl").append("<tr>");
 			$("#div-my-tabl").append("<td id=1>"+item.name+"</td>");
-			$("#div-my-tabl").append("<br>");
-             /* if (!item.address == false){
-               
-			$("#div-my-tabl").append("<td id=2> At "+item.address+"</td>");
-               
-               }*/
-			   $("#div-my-tabl").append("<td id=3>   "+item.room+"</td>");
-               $("#div-my-tabl").append("<br>");
+			$("#div-my-tabl").append("</tr>");
+			$("#div-my-tabl").append("<tr>");
+			$("#div-my-tabl").append("<td id=2>"+item.address+"</td>");
+			$("#div-my-tabl").append("</tr>");
+			$("#div-my-tabl").append("<tr>");
+			   $("#div-my-tabl").append("<td id=3>   "+item.driver+"</td>");
 			
 			
 			$("#div-my-tabl").append("<td id=4>");
-			$("#div-my-tabl").append("<a href= "+item.url+" target =\"_blank\" >More info here</a>");
+			$("#div-my-tabl").append("<a href= "+item.link+" target =\"_blank\" >More info here</a>");
 			$("#div-my-tabl").append("</td>");
 								
 			$("#div-my-tabl").append("<td id=5>");
@@ -55,13 +53,10 @@ var urlList = "";
 			$("#div-my-tabl").append("</td>");
 				
 			$("#div-my-tabl").append("<td id=6>");
-			$("#div-my-tabl").append(" "+item.currency+" per night");
+			$("#div-my-tabl").append(" "+item.price+" a ride");
 			$("#div-my-tabl").append("</td>");
 			
             $("#div-my-tabl").append("</tr>");
-			$("#div-my-tabl").append("<br />");
-			$("#div-my-tabl").append("<br />");
-			$("#div-my-tabl").append("<br />");
 			
         });
 		
