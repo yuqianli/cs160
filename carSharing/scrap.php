@@ -23,6 +23,7 @@
     
     // Find all TD tags with "align=center"
     $i=0;
+    $cur=0;
     //$e = $folder->find('div.class=ride_list a') ;
     //print_r($e);
     foreach ($folder->find('div.ride_list a') as $e){
@@ -37,7 +38,7 @@
             $city2 = explode("</span>", $main5);
             $type = $e->find('div.userpic span.driver',0)?"driver":"passenger";
 
-            $departure = 'TODO';
+            $departure = $folder->find('div.ride_list',0)->childNodes($cur)->find('span',0)->plaintext;
             //date has to be fixed, the algorithm uses $i to compare childNodes
             //but it has not been implemented yet. 
 
@@ -51,7 +52,9 @@
                                'date' => $departure
                          );
             //echo "\n\t".$main5."\n";
-            //$i = $i+1;
+            $i = $i+1;
+        	if($folder->find('div.ride_list',0)->childNodes($i)->find('em',0))
+        		$cur = $i;
         }
     }
     //print_r($arr);
