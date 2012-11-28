@@ -24,21 +24,23 @@
     //$e = $folder->find('div.class=ride_list a') ;
     //print_r($e);
     foreach ($folder->find('div.ride_list a') as $e){
-        $main1=$e->find('div[class=username]',0)->plaintext;
+        $main1=$e->find('div.username',0)->plaintext;
         $main2=$e->getAttribute('href');
         $main3=$e->find('img',0)->src;
         $main4=$e->find('div[class=price_box]',0)?$e->find('div[class=price_box]',0)->childNodes(1)->childNodes(0)->plaintext:"free";
-        $main5=$e->find('div.inner_content span.inner',0)->plaintext;
+        $main5=$e->find('div.inner_content span.inner',0)->innertext;
 		$main6=$e->find('div.userpic span.driver',0)?"driver":"passenger";
-		$main7=$e->find('div.userpic span.driver',0)?"driver":"passenger";
-        //city will split in originCity and destinationCity
+		$main7="";//$e->find('div.userpic span.driver',0)?"driver":"passenger";
         //date has to be fixed, the algorithm uses $i to compare childNodes
         //but it has not been implemented yet. 
+        $city1 = explode("<span", $main5);
+        $city2 = explode("</span>", $main5);
         $arr[] = array(    'link' => $main2,
                            'price' => $main4,
                            'image' => $main3,
                            'name' => $main1,
-                           'city' => $main5,
+                           'originCity' => $city1[0],
+                           'destinationCity' => $city2[1],
 						   'driver' => $main6,
 						   'date' => $_POST['date']
                      );
