@@ -16,25 +16,26 @@
         $price = $e->find('div.price_box h1',0)->innertext;
         $type = $e->find('a span.driver',0)?"driver":"passenger";
     	
-    	$data[] = array(    
+    	$arr[] = array(    
     			'link' => $link,
     			'price' => $price,
     			'image' => $image,
     			'name' => $name,
-    			'originCity' => trim($city1[0])
+    			'originCity' => trim($city1[0]),
     			'destinationCity' => trim($city2[1]),
     			'driver' => $type,
     			'date' => "today"
     	);
-        //print_r($data);
+        //print_r($arr);
     }
 
     //scrape ridejoy
     //todo
 
     //write to json
+    $response = $arr;
     $fp = fopen('home.json', 'w');
-    fwrite($fp, json_encode($data));
+    fwrite($fp, json_encode($response));
     fclose($fp);
     $folder->clear();
 

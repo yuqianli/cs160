@@ -26,7 +26,7 @@
     $cur=0;
     //$e = $folder->find('div.class=ride_list a') ;
     //print_r($e);
-    foreach ($folder->find('div.ride_list a') as $e){
+    foreach ($folder->find('div.ride_list a') as $e) {
         $name = $e->find('div.username',0)->plaintext;
         //ignore last two links in page that are not people
         if (isset($name)) {
