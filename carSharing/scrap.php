@@ -37,11 +37,9 @@
             $city2 = explode("</span>", $main5);
             $type = $e->find('div.userpic span.driver',0)?"driver":"passenger";
 
+            $departure = 'TODO';
             //date has to be fixed, the algorithm uses $i to compare childNodes
             //but it has not been implemented yet. 
-            echo $link . '<br>';
-            //$ln = file_get_html($link);
-            //echo $ln->find('span.depart');
 
             $arr[] = array(    'link' => $link,
                                'price' => $price,
@@ -63,7 +61,6 @@
     fwrite($fp, json_encode($response));
     fclose($fp);
 
-        
     $folder->clear();
     $homepage = file_get_contents('./output.html', false);
 	echo $homepage;       
