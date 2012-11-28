@@ -2,8 +2,9 @@
     // Include the library
     include('simple_html_dom.php');
     
-    $zim_url = "http://www.zimride.com/";
+    $zim_url = "http://www.zimride.com";
     $folder = file_get_html($zim_url);
+    //echo $folder;
     
     foreach ($folder->find('div.rides ul li') as $e){
 
@@ -13,7 +14,7 @@
     	$city1 = explode("<span", $main5);
     	$city2 = explode("</span>", $main5);
     	$link = $e->find('a',0)->href;
-        $name = $e->childNodes(2)->plaintext;
+        $name = $e->find('a',0)->childNodes(3)->plaintext;
         $price = $e->find('div.price_box h1',0)->innertext;
         $type = $e->find('a span.driver',0)?"driver":"passenger";
     	
@@ -27,6 +28,8 @@
     			'driver' => $type,
     			'date' => "today"
     	);//print_r($arr);
+    	
+    }
     $response = $arr;
     
     $fp = fopen('home.json', 'w');
@@ -36,7 +39,5 @@
     $folder->clear();
     $homepage = file_get_contents('./home.html', false);
 	echo $homepage;  
-    	
-    }
 
 ?>
