@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CarJackers!</title>
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="searchbar/visualsearch-datauri.css"/>
+        <script type="text/javascript" src="searchbar/dependencies.js"></script>
+        <script type="text/javascript" src="searchbar/visualsearch.js"></script>
+</head>
+<body>
+<section id="slide">
+	<div id="slideshow">
+	<ul>
+		<li><img src="img/slider1.jpg" alt="slide1" /></li>
+        <li><img src="img/slider2.jpg" alt="slide2" /></li>
+        <li><img src="img/slider3.jpg" alt="slide3" /></li>
+	</ul>
+    </div>
+    <article>Our Prices are a <b>STEAL!</b> <br/>
+    <a href="" title="">RENT NOW</a>
+    <p>Please click here to Rent!</p></article>   
+</section>
+
+<header>
+	<section id="content">
+		<h1><strong>CAR</strong>JACKERS</h1><b>Find a Car</br>
+        <div class="visual_search"></div>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var searchbar = VS.init({
+                    container: $('.visual_search'),
+                    query: "",
+                    showFacets: true,
+                    callbacks: {
+                        search: function(query, searchCollection) {
+                            var search = '<p>You searched for:</p><p>' + query + '</p>';
+                            document.getElementById('results').innerHTML = search;
+                        },
+                        facetMatches: function(callback) {
+                            callback(['make', 'model', 'year', 'color', 'type']);
+                        },
+                        valueMatches: function(facet, searchTerm, callback) {
+                            switch (facet) {
+                                case 'make':
+                                    callback(['BMW', 'Chevy', 'Dodge', 'Fiat', 'Ford', 'GM', 'Honda', 'Lexus', 'Mazda', 'Mercedes-Benz', 'Nissan', 'Porsche', 'Scion', 'Subaru', 'Toyota', 'Volkswagon']);
+                                    break;
+                                case 'model':
+                                    callback(['todo']);
+                                    break;
+                                case 'year':
+                                    var years = [];
+                                    for (var i = 0; i < 21; i++) {
+                                        years.push("" + (2012-i));
+                                    }
+                                    callback(years);
+                                    break;
+                                case 'color':
+                                    callback(['Black', 'Blue', 'Brown/Tan', 'Gray/Silver', 'Green', 'Red', 'Yellow', 'White']);
+                                    break;
+                                case 'type':
+                                    callback(['Electric', 'Hybrid', 'Sedan', 'SUV']);
+                                    break;
+                            }
+                        }
+                    }
+                });
+            });
+        </script>
+        <div id="results"></div>
+    </section>
+</header>
+
+<nav>
+	<ul>
+		<li><a href="index.html" title="homepage">HOMEPAGE</a>
+        <li><a href="HowWeWork.html" title="whoweare">HOW WE WORK</a>
+        <li><a href="magnifyingGlass/magnifyingglass.html" title="rent">LOCATE&RENT</a>
+        <li><a href="Apply.html" title="apply">APPLY&EARN</a>
+        <li><a href="socialSharing/socialsharing.html" title="reviews">USER STORIES&REVIEWS</a>
+        <li><a href="HotNews.html" title="hotnews">HOT NEWS</a>
+                <li><a href="ContactUs.html" title="contacts">CONTACT US</a>
+    </ul>
+</nav>
+
+<section id="encard">
+	<article>
+    	<h2>Who We Are?</h2>
+        <img src="img/photo1.png" alt="" />
+        <p>A network of vehicles throughout your local area, allowing members to pay per trip without the commitment of owning a car. Vehicles are conveniently accessible to members with valid reservations 24 hours a day, 7 days a week. SAVE TIME AND MONEY!</p>
+        <a href="" title="readmore">READ MORE</a>
+    </article>
+    
+    <article>
+    	<h2>On the Go!</h2>
+        <img src="img/photo2.png" alt="" />
+        <p>Take us with you anywhere, through your mobile device. <br></br> FIND A CAR. BOOK IT AND GO!</p>
+        <a href="" title="readmore">READ MORE</a>
+    </article>
+    
+    <article>
+    	<h2>Latest news</h2>
+        <img src="img/photo3.png" alt="" />
+        <p>-More Options to choose from!
+        <br></br>
+        -Great new fleet of Hybrids available!</p>
+        <a href="" title="readmore">READ MORE</a>
+    </article>
+</section>
+
+<section id="special">
+<span class='st_sharethis' displayText='ShareThis'></span>
+<span class='st_twitter' displayText='Tweet'></span>
+<span class='st_facebook' displayText='Facebook'></span>
+<span class='st_linkedin' displayText='LinkedIn'></span>
+<span class='st_pinterest' displayText='Pinterest'></span>
+<span class='st_email' displayText='Email'></span>
+</section>
+  
+
+<section id="copy"></section>
+ <script src="js/jquery.min.js"></script>
+<script src="js/craftyslide.min.js"></script>
+<script>
+$("#slideshow").craftyslide();
+</script> 
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "ur-b7432c41-dd43-c9bb-c187-76a3bd86a4f8"});</script>
+</body>
+</html>

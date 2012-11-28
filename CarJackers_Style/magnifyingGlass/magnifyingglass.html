@@ -1,0 +1,91 @@
+<html><!--
+   This is a jQuery Tools standalone demo. Feel free to copy/paste.
+   http://flowplayer.org/tools/demos/
+
+   Do *not* reference CSS files and images from flowplayer.org when in
+   production Enjoy!
+--><head>
+  <title>jQuery Tools standalone demo</title>
+
+    <!-- include the Tools -->
+  <script src="jquery.min.js"></script>
+  <script src="jquery.tools.min.js"></script>
+  
+  <!-- standalone page styling (can be removed) -->
+  <!--link rel="shortcut icon" href="/media/img/favicon.ico"-->
+  <link rel="stylesheet" type="text/css" href="standalone.css">
+
+  <link rel="stylesheet" type="text/css" href="overlay-basic.css">
+<style>
+  /* some styling for triggers */
+  #triggers {
+  text-align:center;
+  }
+
+  #triggers img {
+  cursor:pointer;
+  margin:0 5px;
+  background-color:#fff;
+  border:1px solid #ccc;
+  padding:2px;
+  margin-top:-20px;
+  margin-left:150px;
+
+  -moz-border-radius:4px;
+  -webkit-border-radius:4px;
+
+  }
+
+    /* styling for elements inside overlay */
+  .details {
+  position:absolute;
+  top:15px;
+  right:15px;
+  font-size:11px;
+  color:#fff;
+  width:150px;
+  }
+
+  #pic1{
+    float: left;
+  }
+
+  .details h3 {
+  color:#aba;
+  font-size:15px;
+  }
+  </style>
+</head>
+<body><!-- trigger elements -->
+<div>Jae's Lexus - 2007 Lexus LS 460</div>
+<div id="pic1"><img src="172x103.jpg">
+<div id="triggers">
+  <img src="glass.png" rel="#mies1">
+</div>
+</div>
+
+
+<!-- overlays -->
+<div class="simple_overlay" id="mies1"><a class="close"></a>
+  <img src="574x343.jpg">
+
+  <div class="details">
+    <h3>Jae's Lexus - 2007 Lexus LS 460</h3>
+    <h4>San Jose, CA 95110</h4>
+    <p>
+      Car has Premium Wheels, Tinted Privacy Windows All around, Navigation
+    </p>
+    <p>
+      Several critics, historians and modernists have declared it "the
+      most beautiful building of the century"
+    </p>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+      $("img[rel]").overlay();
+    });
+</script>
+
+</body></html>
