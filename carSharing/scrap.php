@@ -30,13 +30,17 @@
         $main4=$e->find('div[class=price_box]',0)?$e->find('div[class=price_box]',0)->childNodes(1)->childNodes(0)->plaintext:"free";
         $main5=$e->find('div.inner_content span.inner',0)->plaintext;
 		$main6=$e->find('div.userpic span.driver',0)?"driver":"passenger";
-        
+		$main7=$e->find('div.userpic span.driver',0)?"driver":"passenger";
+        //city will split in originCity and destinationCity
+        //date has to be fixed, the algorithm uses $i to compare childNodes
+        //but it has not been implemented yet. 
         $arr[] = array(    'link' => $main2,
                            'price' => $main4,
                            'image' => $main3,
                            'name' => $main1,
-                           'address' => $main5,
-						   'driver' => $main6
+                           'city' => $main5,
+						   'driver' => $main6,
+						   'date' => $_POST['date']
                      );
        // echo "\n\t".$main5."\n";
       // $i = $i+1;
