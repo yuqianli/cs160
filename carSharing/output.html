@@ -1,47 +1,54 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE HTML>
+<html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Untitled Document</title>
-        <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css"/>
-        <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
-        <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
-        <script>
-            $(function() {
-                $('#datepicker').datepicker();
-            });
-        </script>
-        <style type="text/css">
-            #results {
-                font-family: Arial, Helvetica, sans-serif;
-                background:#FFFFFF;
-            }
-            #title{
-                text-align:center;
-                font-family:Tahoma, Geneva, sans-serif;
-                font-size:36px;
-                text-decoration:underline;
-                outline-color:#090;
-                color:#60C;
-            }
-            td[id *="1"]{color:#F30;font-size:24px;font-stretch:semi-expanded;font-style:oblique;}
-        </style>
+        <title>CarJackers!</title>
+        <link href="static/css/style.css" rel="stylesheet" type="text/css">
+        <script src="static/js/jquery.min.js"></script>
     </head>
     <body>
-        <div id="searchbars">
-            <form method="post" action="./scrap.php">
-                <p>These are static and don't change with results</p>
-                <table class="ex1" cellpadding="4">
-                    <tr><td>I am a:</td><td><input name="type" id="fr1" type="radio" value="passenger" checked>Passenger</td><td><input name="type" id="fr1" type="radio" value="driver">Driver</td></tr>
-                    <tr><td>From:</td> <td><input name="from" id="fr1" type="text" value="San Francisco, CA"></td></tr>
-                    <tr><td>To:</td> <td><input name="to" id="fr1" type="text" value="Los Angeles, CA"></td></tr>
-                    <tr><td>Date:</td> <td> <input name="date" type="text" id="datepicker" placeholder="Choose a date"/>
-                </table><br>
-                <input id="sub" type="submit" value="Submit">
-            </form>
+    <header>
+        <div id="content">
+            <h1><strong>CAR</strong>JACKERS</h1>
         </div>
-        <h2 id="title">Scraped data from zimride.com</h2>
-        <div id="results"></div>
+    </header>
+    <div id="searchbars">
+        <form method="post" action="./scrap.php">
+            <table>
+                <tr>
+                    <td>I am a:</td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td><input name="type" id="fr1" type="radio" value="passenger" checked>Passenger</td>
+                                <td><input name="type" id="fr1" type="radio" value="driver">Driver</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>From:</td>
+                    <td><input name="from" id="fr1" type="text" value="San Francisco, CA"></td>
+                </tr>
+                <tr>
+                    <td>To:</td>
+                    <td><input name="to" id="fr1" type="text" value="Los Angeles, CA"></td>
+                </tr>
+                <tr>
+                    <td>Date:</td>
+                    <td><input name="date" type="text" id="datepicker" placeholder="Choose a date"/></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input id="sub" type="submit" value="Search" style="width: 100%;"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div style="float: left">
+        <textarea rows="10" cols="75">Do something else with this area in results page. Also update the fields to the left.</textarea>
+    </div>
+    <div id="results"></div>
         <script>
         $("document").ready(function() {
             $.getJSON("results.json", function(data) {
