@@ -4,9 +4,14 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>CarJackers!</title>
         <link href="static/css/style.css" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css"/>
-        <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
-        <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+        <script src="static/js/jquery.min.js"></script>
+		<!-- For Social sharing -->
+		<script type="text/javascript">var switchTo5x=true;</script>
+		<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+		<script type="text/javascript">stLight.options({publisher: "7ff40cca-f7f1-4de4-b3af-ef52c7cd6080"});</script>
+
+		<!-- Social sharing -->
+		
     </head>
     <body>
     <header>
@@ -39,11 +44,6 @@
                 <tr>
                     <td>Date:</td>
                     <td><input name="date" type="text" id="datepicker" placeholder="Choose a date"/></td>
-                    <script>
-                        $(function() {
-                            $('#datepicker').datepicker({minDate:0});
-                        });
-                    </script>
                 </tr>
                 <tr>
                     <td></td>
@@ -55,6 +55,7 @@
     <div style="float: left">
         <textarea rows="10" cols="75">Do something else with this area in results page. Also update the fields to the left.</textarea>
     </div>
+	
     <div id="results"></div>
         <script>
         $("document").ready(function() {
@@ -68,13 +69,18 @@
                     result.push("</td>");
                     result.push("<td id=2>"+item.originCity+" to "+item.destinationCity+"</td>");
                     result.push("</tr>");
+					
                     result.push("<tr>");
                     result.push("<td id=5>");
                     result.push("<img src=\""+item.image+"\"/>");
                     result.push("</td>");
                     result.push("<td id=3>   "+item.driver+"</td>");
+					
+					result.push("<td align = right> <span class='st_sharethis' ></span><span class='st_facebook' ></span><span class='st_googleplus' ></span><span class='st_twitter' ></span><span class='st_linkedin' ></span><span class='st_email' ></span></td>");
+	
+
                     result.push("</tr>");
-                    
+                   
                     result.push("<td id=4>");
                     result.push("<a href= "+item.link+" target =\"_blank\" >More info here</a>");
                     result.push("</td>");
