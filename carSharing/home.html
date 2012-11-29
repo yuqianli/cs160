@@ -16,100 +16,94 @@
     </head>
     <body>
     <div id="container">
-    <header>
-        <section id="content">
-            <h1><strong>CAR</strong>JACKERS</h1>
-        </section>
-    </header>
+    <div class="logo">
+        <h1><strong>CAR</strong>JACKERS</h1>
+    </div>
 
-    <div class="padder">
     <div id="searchbars">
-        <form method="post" action="./scrap.php">
-            <table>
-                <tr>
-                    <td>I am a</td>
-                    <td>
-                        <table>
-                            <tr>
-                                <td><input name="type" id="fr1" type="radio" value="passenger" checked>Passenger</td>
-                                <td><input name="type" id="fr1" type="radio" value="driver">Driver</td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td>From</td>
-                    <td><input name="from" id="fr1" type="text" value="San Francisco, CA"></td>
-                </tr>
-                <tr>
-                    <td>To</td>
-                    <td><input name="to" id="fr1" type="text" value="Los Angeles, CA"></td>
-                </tr>
-                <tr>
-                    <td>Date</td>
-                    <td><input name="date" type="text" id="datepicker" placeholder="Choose a date"/></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><input id="sub" type="submit" value="Search" style="width: 100%;"></td>
-                </tr>
-            </table>
-        </form>
-    </div>
-    </div>
-    <div id="results" class="padder">
-        <h2>Latest rides</h2>
-        <div id="slides">
-            <table>
-                <tr>
-                    <td><td><a href="#" class="prev"><img src="static/img/arrow-prev.png" width="24" height="43" /></a></td>
-                    <td><span class="slides_container"></span></td>
-                    <td><a href="#" class="next"><img src="static/img/arrow-next.png" width="24" height="43" /></a></td>
-                </tr>
-            </table>
+        <div class="padder-mini">
+            <form method="post" action="./scrap.php">
+                <table>
+                    <tr>
+                        <td>I am a</td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td><input name="type" id="fr1" type="radio" value="passenger" checked>Passenger</td>
+                                    <td><input name="type" id="fr1" type="radio" value="driver">Driver</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>From</td>
+                        <td><input name="from" id="fr1" type="text" value="San Francisco, CA"></td>
+                    </tr>
+                    <tr>
+                        <td>To</td>
+                        <td><input name="to" id="fr1" type="text" value="Los Angeles, CA"></td>
+                    </tr>
+                    <tr>
+                        <td>Date</td>
+                        <td><input name="date" type="text" id="datepicker" placeholder="Choose a date"/></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input id="sub" type="submit" value="Search" style="width: 100%;"></td>
+                    </tr>
+                </table>
+            </form>
         </div>
-        <script>
-            $(function() {
-            });
-        </script>
+    </div>
+    <div class="splitter">
+        <h2>Freshly jacked rides</h2>
+    </div>
+    <div class="padder">
+        <div id="results">
+            <div id="slides">
+                <table>
+                    <tr>
+                        <td><td><a href="#" class="prev"><img src="static/img/arrow-prev.png" width="24" height="43" /></a></td>
+                        <td><span class="slides_container"></span></td>
+                        <td><a href="#" class="next"><img src="static/img/arrow-next.png" width="24" height="43" /></a></td>
+                    </tr>
+                </table>
+            </div>
+            <script>
+                $(function() {
+                });
+            </script>
+        </div>
     </div>
         <script>
         $("document").ready(function() {
             $.getJSON("home.json", function(data) {
                 var result = [];
                 var urlList = "";
-                $.each(data, function(i, item) {
-                    result.push('<div class="slide">');
-                    result.push('<a href="' + item.link + '"><table class="searchresult-inner">');
-                    result.push('<tr>');
-                        result.push('<td>');
-                            //result.push('<img src="' + item.image + '"/>');
-                            //getting a facebook error :(
-                            result.push('<img src="http://placekitten.com/75/75"/>');
-                        result.push('</td>');
-                        result.push('<td>');
-                            result.push('<table>');
-                                result.push('<tr>');
-                                    result.push('<td>');
-                                        result.push(item.name);
-                                    result.push('</td>');
-                                    result.push('<td>');
-                                        result.push(item.originCity + ' to ' + item.destinationCity);
-                                    result.push('</td>');
-                                result.push('</tr>');
-                                result.push('<tr>');
-                                    result.push('<td>');
-                                        result.push(item.driver);
-                                    result.push('</td>');
-                                    result.push('<td>');
-                                        result.push(item.price);
-                                    result.push('</td>');
-                                result.push('</tr>');
-                            result.push('</table>');
-                        result.push('</td>');
-                    result.push('</tr></table></a>');
-                    result.push('</div>');
-                });
+                    $.each(data, function(i, item) {
+                        result.push("<div class='slide'><a href='"+item.link+"' target='_blank'><table class='searchresult-inner'>");
+                            result.push("<tr>");
+                                result.push("<td style='vertical-align:middle;width:100px;'><img src='"+item.image+"'/></td>");
+                                result.push("<td style='vertical-align:middle;'>");
+                                    result.push("<table style='width:100%;'>");
+                                        result.push("<tr>");
+                                            result.push("<td><span class='popout'>"+item.name+"</span></td>");
+                                            result.push("<td style='text-align:right;'><span class='popout'>"+item.price+"</span></td>");
+                                        result.push("</tr>");
+                                        result.push("<tr>");
+                                            result.push("<td>"+item.originCity+" -> "+item.destinationCity+"</td>");
+                                            result.push("<td style='text-align:right;'>"+item.date+"</td>");
+                                        result.push("</tr>");
+                                        result.push("<tr>");
+                                            result.push("<td><i>" + item.driver + "</i></td>");
+                                            result.push("<td style='text-align:right;'><span class='st_facebook' ></span><span class='st_googleplus' ></span><span class='st_twitter' ></span><span class='st_linkedin' ></span><span class='st_email' ></span></td>");
+                                        result.push("</tr>");
+                                    result.push("</table>");
+                                result.push("</td>");
+                                result.push("<td style='text-align:center;vertical-align:middle;'><a href='javascript:alert(\"Incomplete :(\");'><img src='static/img/glass.png' /></a></td>");
+                            result.push("</tr>");
+                        result.push("</table></a></div>");
+                    });
                 $('.slides_container')[0].innerHTML = result.join('');
                 $('#slides').slides({
                     preload: false,

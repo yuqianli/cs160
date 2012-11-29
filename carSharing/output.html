@@ -5,6 +5,11 @@
         <title>CarJackers!</title>
         <link href="static/css/style.css" rel="stylesheet" type="text/css">
         <script src="static/js/jquery.min.js"></script>
+        <script>
+            $(function() {
+                $('#datepicker').datepicker({ minDate: 0 });
+            });
+        </script>
 		<!-- For Social sharing -->
 		<script type="text/javascript">var switchTo5x=true;</script>
 		<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
@@ -20,40 +25,41 @@
                 <h1><strong>CAR</strong>JACKERS</h1>
             </div>
         </header>
-        <div class="padder">
-            <form method="post" action="./scrap.php">
-                <table>
-                    <tr>
-                        <td>I am a:</td>
-                        <td>
-                            <table>
-                                <tr>
-                                    <td><input name="type" id="fr1" type="radio" value="passenger" checked>Passenger</td>
-                                    <td><input name="type" id="fr1" type="radio" value="driver">Driver</td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>From:</td>
-                        <td><input name="from" id="fr1" type="text" placeholder="Starting location" value="San Francisco, CA"></td>
-                    </tr>
-                    <tr>
-                        <td>To:</td>
-                        <td><input name="to" id="fr1" type="text" placeholder="Ending location" value="Los Angeles, CA"></td>
-                    </tr>
-                    <tr>
-                        <td>Date:</td>
-                        <td><input name="date" type="text" id="datepicker" placeholder="Choose a date"/></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><input id="sub" type="submit" value="Search" style="width: 100%;"></td>
-                    </tr>
-                </table>
-            </form>
+        <div id="searchbars">
+            <div class="padder">
+                <form method="post" action="./scrap.php">
+                    <table>
+                        <tr>
+                            <td>I am a</td>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td><input name="type" id="fr1" type="radio" value="passenger" checked>Passenger</td>
+                                        <td><input name="type" id="fr1" type="radio" value="driver">Driver</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>From</td>
+                            <td><input name="from" id="fr1" type="text" value="San Francisco, CA"></td>
+                        </tr>
+                        <tr>
+                            <td>To</td>
+                            <td><input name="to" id="fr1" type="text" value="Los Angeles, CA"></td>
+                        </tr>
+                        <tr>
+                            <td>Date</td>
+                            <td><input name="date" type="text" id="datepicker" placeholder="Choose a date"/></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><input id="sub" type="submit" value="Search" style="width: 100%;"></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
         </div>
-        
         <div id="results"></div>
             <script>
             $("document").ready(function() {
@@ -61,27 +67,32 @@
                     var result = [];
                     var urlList = "";
                     result.push("<h2>Search results:</h2>");
+                    result.push("<div class='padder'>");
                     $.each(data, function(i, item) {
-                        result.push("<div class='padder'>");
-                        result.push("<table class='searchresult-inner'>");
+                        result.push("<a href='"+item.link+"' target='_blank'><table class='searchresult-inner'>");
                             result.push("<tr>");
-                                result.push("<td style='vertical-align:middle;'><img src='"+item.image+"'/></td>");
+                                result.push("<td style='vertical-align:middle;width:100px;'><img src='"+item.image+"'/></td>");
                                 result.push("<td style='vertical-align:middle;'>");
                                     result.push("<table style='width:100%;'>");
                                         result.push("<tr>");
-                                            result.push("<td> <a href='"+item.link+"'>"+item.name+"</a> <i>" + item.driver + "</i></td>");
-                                            result.push("<td style='text-align:right;'> Price/Seat: "+item.price+"</td>");
+                                            result.push("<td><span class='popout'>"+item.name+"</span></td>");
+                                            result.push("<td style='text-align:right;'><span class='popout'>"+item.price+"</span></td>");
                                         result.push("</tr>");
                                         result.push("<tr>");
-                                            result.push("<td>"+item.originCity+" to "+item.destinationCity+"</td>");
+                                            result.push("<td>"+item.originCity+" -> "+item.destinationCity+"</td>");
                                             result.push("<td style='text-align:right;'>"+item.date+"</td>");
+                                        result.push("</tr>");
+                                        result.push("<tr>");
+                                            result.push("<td><i>" + item.driver + "</i></td>");
+                                            result.push("<td style='text-align:right;'><span class='st_facebook' ></span><span class='st_googleplus' ></span><span class='st_twitter' ></span><span class='st_linkedin' ></span><span class='st_email' ></span></td>");
                                         result.push("</tr>");
                                     result.push("</table>");
                                 result.push("</td>");
+                                result.push("<td style='text-align:center;vertical-align:middle;'><a href='javascript:alert(\"Incomplete :(\");'><img src='static/img/glass.png' /></a></td>");
                             result.push("</tr>");
-                        result.push("</table></div>");
-                        //result.push("<td> <span class='st_sharethis' ></span><span class='st_facebook' ></span><span class='st_googleplus' ></span><span class='st_twitter' ></span><span class='st_linkedin' ></span><span class='st_email' ></span></td>");
+                        result.push("</table></a>");
                     });
+                    result.push('</div>');
                     $('#results')[0].innerHTML = result.join('');
                 });
             });
