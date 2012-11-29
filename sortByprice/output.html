@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>CarJackers!</title>
+        <link href="static/css/style.css" rel="stylesheet" type="text/css">
+        <script src="static/js/jquery.min.js"></script>
+		<!-- For Social sharing -->
+		<script type="text/javascript">var switchTo5x=true;</script>
+		<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+		<script type="text/javascript">stLight.options({publisher: "7ff40cca-f7f1-4de4-b3af-ef52c7cd6080"});</script>
+
+		<!-- Social sharing -->
+		
+    </head>
+    <body>
+	<header>
+        <div id="content">
+            <h1><strong>CAR</strong>JACKERS</h1>
+        </div>
+    </header>
+    <div id="searchbars">
+        <form method="post" action="./scrap.php">
+            <table>
+                <tr>
+                    <td>I am a:</td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td><input name="type" id="fr1" type="radio" value="passenger" checked>Passenger</td>
+                                <td><input name="type" id="fr1" type="radio" value="driver">Driver</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>From:</td>
+                    <td><input name="from" id="fr1" type="text" value="San Francisco, CA"></td>
+                </tr>
+                <tr>
+                    <td>To:</td>
+                    <td><input name="to" id="fr1" type="text" value="Los Angeles, CA"></td>
+                </tr>
+                <tr>
+                    <td>Date:</td>
+                    <td><input name="date" type="text" id="datepicker" placeholder="Choose a date"/></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input id="sub" type="submit" value="Search" style="width: 100%;"></td>
+                </tr>
+            </table>
+        </form>
+		<br></br>
+		<form method="post" action="./sort.php">
+		<table CELLPADDING = "4">
+                <tr ALIGN = "CENTER">
+				<td></td>
+                    <td><input id="sub" type="submit" value="Sort by Price" style="width: 100%;"></td>
+                </tr>
+		</table>
+		</form>
+    </div>
+    <div style="float: left">
+        <textarea rows="10" cols="75">Do something else with this area in results page. Also update the fields to the left.</textarea>
+    </div>
+	
+    <div id="results"></div>
+        <script>
+        $("document").ready(function() {
+            $.getJSON("results.json", function(data) {
+                var result = [];
+				result.push("<br>");
+                var urlList = "";
+                $.each(data, function(i, item) {
+					
+					result.push("<table border='3'>");
+                    
+					result.push("<tr>");
+					result.push("<td id=1 rowspan='2' align='center'> <img src='"+item.image+"'> </img> </td>");
+					result.push("<td id=2 height='50%'> <b><a href='"+item.link+"'>"+item.name+"</a></b> </td>");
+					result.push("<td id=3>"+item.originCity+" to "+item.destinationCity+"</td>");
+					result.push("<td id=4> Departure "+item.date+"</td>");
+					result.push("</tr>");
+					
+					result.push("<tr>");
+					result.push("<td id=5>"+item.driver+"</td>");
+					result.push("<td id=6> Price/Seat: "+item.price+"</td>");
+					result.push("<td id =7 align = right> <span class='st_sharethis' ></span><span class='st_facebook' ></span><span class='st_googleplus' ></span><span class='st_twitter' ></span><span class='st_linkedin' ></span><span class='st_email' ></span></td>");
+					result.push("</tr>");
+					
+					result.push("</table>");
+					result.push("<br>");
+                });
+                $('#results').append(result.join(''));
+            });
+        });
+        </script>
+    </body>
+</html>

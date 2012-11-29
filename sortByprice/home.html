@@ -1,0 +1,136 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>CarJackers!</title>
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css"/>
+        <link href="static/css/style.css" rel="stylesheet" type="text/css">
+        <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+        <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+        <script src="static/js/slides.min.jquery.js"</script>
+        <script>
+            $(function() {
+                $('#datepicker').datepicker({ minDate: 0 });
+            });
+        </script>
+    </head>
+    <body>
+    <div id="container">
+    <header>
+        <section id="content">
+            <h1><strong>CAR</strong>JACKERS</h1>
+        </section>
+    </header>
+
+    <div class="padder">
+    <div id="searchbars">
+        <form method="post" action="./scrap.php">
+            <table>
+                <tr>
+                    <td>I am a</td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td><input name="type" id="fr1" type="radio" value="passenger" checked>Passenger</td>
+                                <td><input name="type" id="fr1" type="radio" value="driver">Driver</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>From</td>
+                    <td><input name="from" id="fr1" type="text" value="San Francisco, CA"></td>
+                </tr>
+                <tr>
+                    <td>To</td>
+                    <td><input name="to" id="fr1" type="text" value="Los Angeles, CA"></td>
+                </tr>
+                <tr>
+                    <td>Date</td>
+                    <td><input name="date" type="text" id="datepicker" placeholder="Choose a date"/></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input id="sub" type="submit" value="Search" style="width: 100%;"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    </div>
+    <div id="results">
+        <h2>Rides expiring soon!</h2>
+        <div id="slides">
+            <div class="slides_container"></div>
+        </div>
+        <script>
+            $(function() {
+            });
+        </script>
+    </div>
+        <script>
+        $("document").ready(function() {
+            $.getJSON("home.json", function(data) {
+                var result = [];
+                var urlList = "";
+                $.each(data, function(i, item) {
+                    result.push('<div class="slide">');
+                    result.push('<div class="padder searchresult">');
+                    result.push('<h2>' + item.date + ' (redundant) </h2>');
+                    result.push('<a href="' + item.link + '"><table class="searchresult-inner">');
+                    result.push('<tr>');
+                        result.push('<td>');
+                            //result.push('<img src="' + item.image + '"/>');
+                            //getting a facebook error :(
+                            result.push('<img src="http://placekitten.com/75/75"/>');
+                        result.push('</td>');
+                        result.push('<td>');
+                            result.push('<table>');
+                                result.push('<tr>');
+                                    result.push('<td>');
+                                        result.push(item.name);
+                                    result.push('</td>');
+                                    result.push('<td>');
+                                        result.push(item.originCity + ' to ' + item.destinationCity);
+                                    result.push('</td>');
+                                result.push('</tr>');
+                                result.push('<tr>');
+                                    result.push('<td>');
+                                        result.push(item.driver);
+                                    result.push('</td>');
+                                    result.push('<td>');
+                                        result.push(item.price);
+                                    result.push('</td>');
+                                result.push('</tr>');
+                            result.push('</table>');
+                        result.push('</td>');
+                    result.push('</tr></table></a>');
+                    result.push('</div>');
+                    result.push('</div>');
+                });
+                $('.slides_container')[0].innerHTML = result.join('');
+                $('#slides').slides({
+                    preload: true,
+                    play: 5000,
+                    pause: 2500,
+                    animationStart: function(current){
+                        $('.caption').animate({
+                            bottom:-35
+                        },100);
+                    },
+                    animationComplete: function(current){
+                        $('.caption').animate({
+                            bottom:0
+                        },200);
+                    },
+                    slidesLoaded: function() {
+                        $('.caption').animate({
+                            bottom:0
+                        },200);
+                    }
+                });
+            });
+        });
+        </script>
+    </div>
+    </body>
+</html>

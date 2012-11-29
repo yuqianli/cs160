@@ -1,0 +1,187 @@
+/* 
+	Resets defualt browser settings
+	reset.css
+*/
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td { margin:0; padding:0; border:0; outline:0; font-weight:inherit; font-style:inherit; font-size:100%; font-family:inherit; vertical-align:baseline; }
+:focus { outline:0; }
+a:active { outline:none; }
+body { line-height:1; color:black; background:white; }
+ol,ul { list-style:none; }
+table { border-collapse:separate; border-spacing:0; }
+caption,th,td { text-align:left; font-weight:normal; }
+blockquote:before,blockquote:after,q:before,q:after { content:""; }
+blockquote,q { quotes:"" ""; }
+
+/*
+	Page style
+*/
+body { 
+	font:normal 62.5%/1.5 Helvetica, Arial, sans-serif;
+	letter-spacing:0;
+	color:#434343;
+	background:#000;
+	position:relative;
+	-webkit-font-smoothing: subpixel-antialiased;
+}
+a:link,a:visited { color:#599100; text-decoration:none; }
+a:hover,a:active { color:#599100; text-decoration:underline; }
+h2 { font-size: 150%; font-weight: bold; margin-bottom: 10px; color: #fff; }   
+strong {color:#0d9ce0; font-weight:normal;}
+
+/*
+	Slideshow
+*/
+
+#slides {
+}
+
+#container {
+    width: 900px;
+    margin: 0 auto;
+}
+
+/*
+	Slides container
+	Important:
+	Set the width of your slides container
+	Set to display none, prevents content flash
+*/
+
+.slides_container {
+	width:570px;
+	overflow:hidden;
+	position:relative;
+	display:none;
+    margin: 0 auto;
+}
+
+/*
+	Each slide
+	Important:
+	Set the width of your slides
+	If height not specified height will be set by the slide content
+	Set to display block
+*/
+
+.slides_container div.slide {
+	width:570px;
+	height:200px;
+	display:block;
+}
+
+
+/*
+	Next/prev buttons
+*/
+
+#slides .next,#slides .prev {
+	position:absolute;
+	top:107px;
+	left:-39px;
+	width:24px;
+	height:43px;
+	display:block;
+	z-index:101;
+}
+
+#slides .next {
+	left:585px;
+}
+
+/*
+	Pagination
+*/
+
+.pagination {
+	margin:26px auto 0;
+}
+.pagination li {
+	float:left;
+	margin:0 1px;
+	list-style:none;
+}
+.pagination li a {
+	display:block;
+	width:12px;
+	height:0;
+	padding-top:12px;
+	background-image:url(../img/pagination.png);
+	background-position:0 0;
+	float:left;
+	overflow:hidden;
+}
+.pagination li.current a {
+	background-position:0 -12px;
+}
+
+/* Other stuff */
+.padder {
+    width: 100%;
+    font-size: 175%;
+    line-height: 150%;
+    box-sizing: border-box;
+    padding: 1em;
+	background-color:#0d9ce0;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+#searchbars {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#searchbars input[type="text"] {
+    width: 100%;
+}
+
+#results {
+    clear: both;
+    font-size: 150%;
+    line-height: 150%;
+}
+
+.searchresult {
+    font-size: 100%;
+}
+
+.searchresult-inner {
+    color: #444;
+    box-sizing: border-box;
+    padding: 1em;
+	background-color: #fff;
+    width: 100%;
+}
+
+.caption {
+	display:yes;
+}
+
+#content {
+	width:100%;;
+	position:relative;
+}
+
+header {
+	font-family: Arial;
+	color:#fff;
+	height:70px;
+	background-color:#000;
+	opacity:0.8;
+	padding-top:20px;
+}
+
+header h1{
+	width:150px;
+	height:37px;
+	font-size:25px;
+	padding-left:70px;
+	padding-top:10px;
+	background-image:url(../img/logo.png);
+	background-repeat:no-repeat;
+}
+
+header b {color:#717171; font-size:13px; float:right; margin-top:-37px;}
+header b .one {font-size:24px; color:#fff; padding-left:25px;}
+header b .rest {font-size:20px; color:#fff; letter-spacing:0.1em;}
