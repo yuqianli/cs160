@@ -3,12 +3,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css"/>
-        <link rel="stylesheet" href="static/css/overlay-basic.css"/>
         <link href="static/css/style.css" rel="stylesheet" type="text/css">
         <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
         <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
         <script src="static/js/slides.min.jquery.js"></script>
-        <script src="static/js/jquery.tools.min.js"></script>
 		<!-- For Social sharing -->
 		<script type="text/javascript">var switchTo5x=true;</script>
 		<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
@@ -88,27 +86,13 @@
                                             result.push("</tr>");
                                         result.push("</table>");
                                     result.push("</td>");
-                                    result.push("<td style='text-align:center;vertical-align:middle;'><span id='triggers'><img src='static/img/glass.png' rel='#mies1' /></span></td>");
+                                    result.push("<td style='text-align:center;vertical-align:middle;'><a href='javascript:alert(\"Incomplete :(\");'><img src='static/img/glass.png'/></a></span></td>");
                                 result.push("</tr>");
                             result.push("</table></a>");
                         });
                         result.push('</div>');
                         $('#results')[0].innerHTML = result.join('');
                     });
-                });
-            </script>
-            <div class="simple_overlay" id="mies1"><a class="close"></a>
-                <img src="574x343.jpg">
-                <div class="details">
-                    <h3>Jae's Lexus - 2007 Lexus LS 460</h3>
-                    <h4>San Jose, CA 95110</h4>
-                <p>Car has Premium Wheels, Tinted Privacy Windows All around, Navigation</p>
-                <p>Several critics, historians and modernists have declared it "the most beautiful building of the century"</p>
-                </div>
-            </div>
-            <script>
-              $(document).ready(function() {
-                  $("img[rel]").overlay();
                 });
             </script>
         </div>
