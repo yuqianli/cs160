@@ -142,6 +142,7 @@ strong {color:#0d9ce0; font-weight:normal;}
 .padder-mini {
     width: 33%;
     float: right;
+    margin-top:100px;
 }
 
 .splitter {
@@ -189,7 +190,7 @@ strong {color:#0d9ce0; font-weight:normal;}
 .logo {
 	color:#fff;
 	height:70px;
-    margin-top:50px;
+    margin-top:100px;
     float: left;
 }
 

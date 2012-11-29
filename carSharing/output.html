@@ -5,11 +5,6 @@
         <title>CarJackers!</title>
         <link href="static/css/style.css" rel="stylesheet" type="text/css">
         <script src="static/js/jquery.min.js"></script>
-        <script>
-            $(function() {
-                $('#datepicker').datepicker({ minDate: 0 });
-            });
-        </script>
 		<!-- For Social sharing -->
 		<script type="text/javascript">var switchTo5x=true;</script>
 		<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
@@ -20,46 +15,45 @@
     </head>
     <body>
     <div id="container">
-        <header>
-            <div id="content">
-                <h1><strong>CAR</strong>JACKERS</h1>
-            </div>
-        </header>
-        <div id="searchbars">
-            <div class="padder">
-                <form method="post" action="./scrap.php">
-                    <table>
-                        <tr>
-                            <td>I am a</td>
-                            <td>
-                                <table>
-                                    <tr>
-                                        <td><input name="type" id="fr1" type="radio" value="passenger" checked>Passenger</td>
-                                        <td><input name="type" id="fr1" type="radio" value="driver">Driver</td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>From</td>
-                            <td><input name="from" id="fr1" type="text" value="San Francisco, CA"></td>
-                        </tr>
-                        <tr>
-                            <td>To</td>
-                            <td><input name="to" id="fr1" type="text" value="Los Angeles, CA"></td>
-                        </tr>
-                        <tr>
-                            <td>Date</td>
-                            <td><input name="date" type="text" id="datepicker" placeholder="Choose a date"/></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><input id="sub" type="submit" value="Search" style="width: 100%;"></td>
-                        </tr>
-                    </table>
-                </form>
-            </div>
+    <div class="logo">
+        <h1><strong>CAR</strong>JACKERS</h1>
+    </div>
+
+    <div id="searchbars">
+        <div class="padder-mini">
+            <form method="post" action="./scrap.php">
+                <table>
+                    <tr>
+                        <td>I am a</td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td><input name="type" id="fr1" type="radio" value="passenger" checked>Passenger</td>
+                                    <td><input name="type" id="fr1" type="radio" value="driver">Driver</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>From</td>
+                        <td><input name="from" id="fr1" type="text" value="San Francisco, CA"></td>
+                    </tr>
+                    <tr>
+                        <td>To</td>
+                        <td><input name="to" id="fr1" type="text" value="Los Angeles, CA"></td>
+                    </tr>
+                    <tr>
+                        <td>Date</td>
+                        <td><input name="date" type="text" id="datepicker" placeholder="Choose a date"/></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input id="sub" type="submit" value="Search" style="width: 100%;"></td>
+                    </tr>
+                </table>
+            </form>
         </div>
+    </div>
         <div id="results"></div>
             <script>
             $("document").ready(function() {
@@ -95,6 +89,7 @@
                     result.push('</div>');
                     $('#results')[0].innerHTML = result.join('');
                 });
+                $('#datepicker').datepicker({ minDate: 0 });
             });
             </script>
         </div>
