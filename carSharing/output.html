@@ -14,7 +14,7 @@
 		
     </head>
     <body>
-    <header>
+	<header>
         <div id="content">
             <h1><strong>CAR</strong>JACKERS</h1>
         </div>
@@ -61,38 +61,28 @@
         $("document").ready(function() {
             $.getJSON("results.json", function(data) {
                 var result = [];
-                result.push("<table border='3'>");
+				result.push("<br>");
                 var urlList = "";
                 $.each(data, function(i, item) {
-                    result.push("<tr>");
-                    result.push("<td id=1>"+item.name+"</td>");
-                    result.push("</td>");
-                    result.push("<td id=2>"+item.originCity+" to "+item.destinationCity+"</td>");
-                    result.push("</tr>");
 					
-                    result.push("<tr>");
-                    result.push("<td id=5>");
-                    result.push("<img src=\""+item.image+"\"/>");
-                    result.push("</td>");
-                    result.push("<td id=3>   "+item.driver+"</td>");
-					
-					result.push("<td align = right> <span class='st_sharethis' ></span><span class='st_facebook' ></span><span class='st_googleplus' ></span><span class='st_twitter' ></span><span class='st_linkedin' ></span><span class='st_email' ></span></td>");
-	
-
-                    result.push("</tr>");
-                   
-                    result.push("<td id=4>");
-                    result.push("<a href= "+item.link+" target =\"_blank\" >More info here</a>");
-                    result.push("</td>");
-                                        
-                        
-                    result.push("<td id=6>");
-                    result.push(" "+item.price+" a ride on "+item.date);
-                    result.push("</td>");
+					result.push("<table border='3'>");
                     
-                    result.push("</tr>");
+					result.push("<tr>");
+					result.push("<td id=1 rowspan='2' align='center'> <img src='"+item.image+"'> </img> </td>");
+					result.push("<td id=2 height='50%'> <b><a href='"+item.link+"'>"+item.name+"</a></b> </td>");
+					result.push("<td id=3>"+item.originCity+" to "+item.destinationCity+"</td>");
+					result.push("<td id=4> Departure "+item.date+"</td>");
+					result.push("</tr>");
+					
+					result.push("<tr>");
+					result.push("<td id=5>"+item.driver+"</td>");
+					result.push("<td id=6> Price/Seat: "+item.price+"</td>");
+					result.push("<td id =7 align = right> <span class='st_sharethis' ></span><span class='st_facebook' ></span><span class='st_googleplus' ></span><span class='st_twitter' ></span><span class='st_linkedin' ></span><span class='st_email' ></span></td>");
+					result.push("</tr>");
+					
+					result.push("</table>");
+					result.push("<br>");
                 });
-                result.push("</table>");
                 $('#results').append(result.join(''));
             });
         });
