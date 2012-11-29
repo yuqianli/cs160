@@ -14,78 +14,78 @@
 		
     </head>
     <body>
-	<header>
-        <div id="content">
-            <h1><strong>CAR</strong>JACKERS</h1>
+    <div id="container">
+        <header>
+            <div id="content">
+                <h1><strong>CAR</strong>JACKERS</h1>
+            </div>
+        </header>
+        <div class="padder">
+            <form method="post" action="./scrap.php">
+                <table>
+                    <tr>
+                        <td>I am a:</td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td><input name="type" id="fr1" type="radio" value="passenger" checked>Passenger</td>
+                                    <td><input name="type" id="fr1" type="radio" value="driver">Driver</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>From:</td>
+                        <td><input name="from" id="fr1" type="text" placeholder="Starting location" value="San Francisco, CA"></td>
+                    </tr>
+                    <tr>
+                        <td>To:</td>
+                        <td><input name="to" id="fr1" type="text" placeholder="Ending location" value="Los Angeles, CA"></td>
+                    </tr>
+                    <tr>
+                        <td>Date:</td>
+                        <td><input name="date" type="text" id="datepicker" placeholder="Choose a date"/></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input id="sub" type="submit" value="Search" style="width: 100%;"></td>
+                    </tr>
+                </table>
+            </form>
         </div>
-    </header>
-    <div id="searchbars">
-        <form method="post" action="./scrap.php">
-            <table>
-                <tr>
-                    <td>I am a:</td>
-                    <td>
-                        <table>
-                            <tr>
-                                <td><input name="type" id="fr1" type="radio" value="passenger" checked>Passenger</td>
-                                <td><input name="type" id="fr1" type="radio" value="driver">Driver</td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td>From:</td>
-                    <td><input name="from" id="fr1" type="text" placeholder="Starting location" value="San Francisco, CA"></td>
-                </tr>
-                <tr>
-                    <td>To:</td>
-                    <td><input name="to" id="fr1" type="text" placeholder="Ending location" value="Los Angeles, CA"></td>
-                </tr>
-                <tr>
-                    <td>Date:</td>
-                    <td><input name="date" type="text" id="datepicker" placeholder="Choose a date"/></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><input id="sub" type="submit" value="Search" style="width: 100%;"></td>
-                </tr>
-            </table>
-        </form>
-    </div>
-    <div style="float: left">
-        <textarea rows="10" cols="75">Do something else with this area in results page. Also update the fields to the left.</textarea>
-    </div>
-	
-    <div id="results"></div>
-        <script>
-        $("document").ready(function() {
-            $.getJSON("results.json", function(data) {
-                var result = [];
-				result.push("<br>");
-                var urlList = "";
-                $.each(data, function(i, item) {
-					
-					result.push("<table border='3'>");
-                    
-					result.push("<tr>");
-					result.push("<td id=1 rowspan='2' align='center'> <img src='"+item.image+"'> </img> </td>");
-					result.push("<td id=2 height='50%'> <b><a href='"+item.link+"'>"+item.name+"</a></b> </td>");
-					result.push("<td id=3>"+item.originCity+" to "+item.destinationCity+"</td>");
-					result.push("<td id=4> Departure "+item.date+"</td>");
-					result.push("</tr>");
-					
-					result.push("<tr>");
-					result.push("<td id=5>"+item.driver+"</td>");
-					result.push("<td id=6> Price/Seat: "+item.price+"</td>");
-					result.push("<td id =7 align = right> <span class='st_sharethis' ></span><span class='st_facebook' ></span><span class='st_googleplus' ></span><span class='st_twitter' ></span><span class='st_linkedin' ></span><span class='st_email' ></span></td>");
-					result.push("</tr>");
-					
-					result.push("</table>");
-					result.push("<br>");
+        
+        <div id="results"></div>
+            <script>
+            $("document").ready(function() {
+                $.getJSON("results.json", function(data) {
+                    var result = [];
+                    var urlList = "";
+                    result.push("<h2>Search results:</h2>");
+                    $.each(data, function(i, item) {
+                        result.push("<div class='padder'>");
+                        result.push("<table class='searchresult-inner'>");
+                            result.push("<tr>");
+                                result.push("<td style='vertical-align:middle;'><img src='"+item.image+"'/></td>");
+                                result.push("<td style='vertical-align:middle;'>");
+                                    result.push("<table style='width:100%;'>");
+                                        result.push("<tr>");
+                                            result.push("<td> <a href='"+item.link+"'>"+item.name+"</a> <i>" + item.driver + "</i></td>");
+                                            result.push("<td style='text-align:right;'> Price/Seat: "+item.price+"</td>");
+                                        result.push("</tr>");
+                                        result.push("<tr>");
+                                            result.push("<td>"+item.originCity+" to "+item.destinationCity+"</td>");
+                                            result.push("<td style='text-align:right;'>"+item.date+"</td>");
+                                        result.push("</tr>");
+                                    result.push("</table>");
+                                result.push("</td>");
+                            result.push("</tr>");
+                        result.push("</table></div>");
+                        //result.push("<td> <span class='st_sharethis' ></span><span class='st_facebook' ></span><span class='st_googleplus' ></span><span class='st_twitter' ></span><span class='st_linkedin' ></span><span class='st_email' ></span></td>");
+                    });
+                    $('#results')[0].innerHTML = result.join('');
                 });
-                $('#results').append(result.join(''));
             });
-        });
-        </script>
+            </script>
+        </div>
     </body>
 </html>

@@ -123,7 +123,7 @@ strong {color:#0d9ce0; font-weight:normal;}
 	xbackground-color:#0d9ce0;
 	background-color:#0d91ce;
     border-radius: 15px;
-    margin-bottom: 2em;
+    margin-bottom: 20px;
     color: #fff;
     box-shadow: 0 0 5px 1px #151515;
 }
@@ -141,6 +141,7 @@ strong {color:#0d9ce0; font-weight:normal;}
     clear: both;
     font-size: 150%;
     line-height: 150%;
+    margin-top: 10px;
 }
 
 .searchresult {
