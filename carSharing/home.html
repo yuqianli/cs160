@@ -20,11 +20,12 @@
         </section>
     </header>
 
+    <div class="padder">
     <div id="searchbars">
         <form method="post" action="./scrap.php">
             <table>
                 <tr>
-                    <td>I am a:</td>
+                    <td>I am a</td>
                     <td>
                         <table>
                             <tr>
@@ -35,15 +36,15 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>From:</td>
+                    <td>From</td>
                     <td><input name="from" id="fr1" type="text" value="San Francisco, CA"></td>
                 </tr>
                 <tr>
-                    <td>To:</td>
+                    <td>To</td>
                     <td><input name="to" id="fr1" type="text" value="Los Angeles, CA"></td>
                 </tr>
                 <tr>
-                    <td>Date:</td>
+                    <td>Date</td>
                     <td><input name="date" type="text" id="datepicker" placeholder="Choose a date"/></td>
                 </tr>
                 <tr>
@@ -53,11 +54,9 @@
             </table>
         </form>
     </div>
-    <div style="float: left">
-        <textarea rows="10" cols="75">Maybe put slideshow over here? It's really big.</textarea>
     </div>
     <div id="results">
-        <h2>Rides expiring soon</h2>
+        <h2>Rides expiring soon!</h2>
     </div>
         <script>
         $("document").ready(function() {
@@ -65,18 +64,15 @@
                 var result = [];
                 var urlList = "";
                 $.each(data, function(i, item) {
-                    result.push('<table border="1">');
-                    result.push('<tr>');
-                        result.push('<td>');
-                            result.push(item.date);
-                        result.push('</td>');
-                    result.push('</tr>');
+                    result.push('<div class="padder searchresult">');
+                    result.push('<h2>' + item.date + ' (put this in slideshow) </h2>');
+                    result.push('<table class="searchresult-inner">');
                     result.push('<tr>');
                         result.push('<td>');
                             result.push('<img src="' + item.image + '"/>');
                         result.push('</td>');
                         result.push('<td>');
-                            result.push('<table border="1"');
+                            result.push('<table>');
                                 result.push('<tr>');
                                     result.push('<td>');
                                         result.push(item.name);
@@ -96,6 +92,7 @@
                             result.push('</table>');
                         result.push('</td>');
                     result.push('</tr></table>');
+                    result.push('</div>');
                 });
                 $('#results').append(result.join(''));
             });
