@@ -3,10 +3,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css"/>
+        <link rel="stylesheet" href="static/css/overlay-basic.css"/>
         <link href="static/css/style.css" rel="stylesheet" type="text/css">
         <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
         <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
         <script src="static/js/slides.min.jquery.js"></script>
+        <script src="static/js/jquery.tools.min.js"></script>
 		<!-- For Social sharing -->
 		<script type="text/javascript">var switchTo5x=true;</script>
 		<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
@@ -14,87 +16,100 @@
 		<!-- Social sharing -->
     </head>
     <body>
-    <div id="container">
-    <div class="logo">
-        <h1><strong>CAR</strong>JACKERS</h1>
-    </div>
-
-    <div id="searchbars">
-        <div class="padder-mini">
-            <form method="post" action="./scrap.php">
-                <table>
-                    <tr>
-                        <td>I am a</td>
-                        <td>
-                            <table>
-                                <tr>
-                                    <td><input name="type" id="fr1" type="radio" value="passenger" checked>Passenger</td>
-                                    <td><input name="type" id="fr1" type="radio" value="driver">Driver</td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>From</td>
-                        <td><input name="from" id="fr1" type="text" placeholder="Origin"></td>
-                    </tr>
-                    <tr>
-                        <td>To</td>
-                        <td><input name="to" id="fr1" type="text" placeholder="Destination"></td>
-                    </tr>
-                    <tr>
-                        <td>Date</td>
-                        <td><input name="date" type="text" id="datepicker" placeholder="Choose a date"/></td>
-                        <script>
-                            $(function() {
-                                $('#datepicker').datepicker({ minDate: 0 });
-                            });
-                        </script>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><input id="sub" type="submit" value="Search" style="width: 100%;"></td>
-                    </tr>
-                </table>
-            </form>
-        </div>
-    </div>
-        <div id="results"></div>
+        <div id="container">
+            <div class="logo">
+                <h1><strong>CAR</strong>JACKERS</h1>
+            </div>
+            <div id="searchbars">
+                <div class="padder-mini">
+                    <form method="post" action="./scrap.php">
+                        <table>
+                            <tr>
+                                <td>I am a</td>
+                                <td>
+                                    <table>
+                                        <tr>
+                                            <td><input name="type" id="fr1" type="radio" value="passenger" checked>Passenger</td>
+                                            <td><input name="type" id="fr1" type="radio" value="driver">Driver</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>From</td>
+                                <td><input name="from" id="fr1" type="text" placeholder="Origin"></td>
+                            </tr>
+                            <tr>
+                                <td>To</td>
+                                <td><input name="to" id="fr1" type="text" placeholder="Destination"></td>
+                            </tr>
+                            <tr>
+                                <td>Date</td>
+                                <td><input name="date" type="text" id="datepicker" placeholder="Choose a date"/></td>
+                                <script>
+                                    $(function() {
+                                        $('#datepicker').datepicker({ minDate: 0 });
+                                    });
+                                </script>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><input id="sub" type="submit" value="Search" style="width: 100%;"></td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+            <div id="results"></div>
             <script>
-            $("document").ready(function() {
-                $.getJSON("results.json", function(data) {
-                    var result = [];
-                    var urlList = "";
-                    result.push("<h2>Search results:</h2>");
-                    result.push("<div class='padder'>");
-                    $.each(data, function(i, item) {
-                        result.push("<a href='"+item.link+"' target='_blank'><table class='searchresult-inner'>");
-                            result.push("<tr>");
-                                result.push("<td style='vertical-align:middle;width:100px;'><img src='"+item.image+"'/></td>");
-                                result.push("<td style='vertical-align:middle;'>");
-                                    result.push("<table style='width:100%;'>");
-                                        result.push("<tr>");
-                                            result.push("<td><span class='popout'>"+item.name+"</span></td>");
-                                            result.push("<td style='text-align:right;'><span class='popout'>"+item.price+"</span></td>");
-                                        result.push("</tr>");
-                                        result.push("<tr>");
-                                            result.push("<td>"+item.originCity+" -> "+item.destinationCity+"</td>");
-                                            result.push("<td style='text-align:right;'>"+item.date+"</td>");
-                                        result.push("</tr>");
-                                        result.push("<tr>");
-                                            result.push("<td><i>" + item.driver + "</i></td>");
-                                            result.push("<td style='text-align:right;'><span class='st_facebook' ></span><span class='st_googleplus' ></span><span class='st_twitter' ></span><span class='st_linkedin' ></span><span class='st_email' ></span></td>");
-                                        result.push("</tr>");
-                                    result.push("</table>");
-                                result.push("</td>");
-                                result.push("<td style='text-align:center;vertical-align:middle;'><a href='javascript:alert(\"Incomplete :(\");'><img src='static/img/glass.png' /></a></td>");
-                            result.push("</tr>");
-                        result.push("</table></a>");
+                $("document").ready(function() {
+                    $.getJSON("results.json", function(data) {
+                        var result = [];
+                        var urlList = "";
+                        result.push("<h2>Search results:</h2>");
+                        result.push("<div class='padder'>");
+                        $.each(data, function(i, item) {
+                            result.push("<a href='"+item.link+"' target='_blank'><table class='searchresult-inner'>");
+                                result.push("<tr>");
+                                    result.push("<td style='vertical-align:middle;width:100px;'><img src='"+item.image+"'/></td>");
+                                    result.push("<td style='vertical-align:middle;'>");
+                                        result.push("<table style='width:100%;'>");
+                                            result.push("<tr>");
+                                                result.push("<td><span class='popout'>"+item.name+"</span></td>");
+                                                result.push("<td style='text-align:right;'><span class='popout'>"+item.price+"</span></td>");
+                                            result.push("</tr>");
+                                            result.push("<tr>");
+                                                result.push("<td>"+item.originCity+" -> "+item.destinationCity+"</td>");
+                                                result.push("<td style='text-align:right;'>"+item.date+"</td>");
+                                            result.push("</tr>");
+                                            result.push("<tr>");
+                                                result.push("<td><i>" + item.driver + "</i></td>");
+                                                result.push("<td style='text-align:right;'><span class='st_facebook' ></span><span class='st_googleplus' ></span><span class='st_twitter' ></span><span class='st_linkedin' ></span><span class='st_email' ></span></td>");
+                                            result.push("</tr>");
+                                        result.push("</table>");
+                                    result.push("</td>");
+                                    result.push("<td style='text-align:center;vertical-align:middle;'><span id='triggers'><img src='static/img/glass.png' rel='#mies1' /></span></td>");
+                                result.push("</tr>");
+                            result.push("</table></a>");
+                        });
+                        result.push('</div>');
+                        $('#results')[0].innerHTML = result.join('');
                     });
-                    result.push('</div>');
-                    $('#results')[0].innerHTML = result.join('');
                 });
-            });
+            </script>
+            <div class="simple_overlay" id="mies1"><a class="close"></a>
+                <img src="574x343.jpg">
+                <div class="details">
+                    <h3>Jae's Lexus - 2007 Lexus LS 460</h3>
+                    <h4>San Jose, CA 95110</h4>
+                <p>Car has Premium Wheels, Tinted Privacy Windows All around, Navigation</p>
+                <p>Several critics, historians and modernists have declared it "the most beautiful building of the century"</p>
+                </div>
+            </div>
+            <script>
+              $(document).ready(function() {
+                  $("img[rel]").overlay();
+                });
             </script>
         </div>
     </body>

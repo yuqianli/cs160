@@ -11,7 +11,7 @@
     	$main5 = str_replace('"', ' ', $main5);
     	$city1 = explode("<span", $main5);
     	$city2 = explode("</span>", $main5);
-    	$link = $e->find('a',0)->href;
+    	$link = 'http://zimride.com/' . $e->find('a',0)->href;
         $name = $e->find('a',0)->childNodes(3)->plaintext;
         $price = $e->find('div.price_box h1',0)->innertext;
         $type = $e->find('a span.driver',0)?"driver":"passenger";
