@@ -32,7 +32,12 @@ strong {color:#0d9ce0; font-weight:normal;}
 	Slideshow
 */
 
-#slides {
+#slides table {
+    margin: 0 auto;
+}
+
+#slides table td {
+    vertical-align: middle;
 }
 
 #container {
@@ -52,7 +57,7 @@ strong {color:#0d9ce0; font-weight:normal;}
 	overflow:hidden;
 	position:relative;
 	display:none;
-    margin: 0 auto;
+    background-color:red;
 }
 
 /*
@@ -65,8 +70,12 @@ strong {color:#0d9ce0; font-weight:normal;}
 
 .slides_container div.slide {
 	width:570px;
-	height:200px;
+	height:100px;
 	display:block;
+}
+
+.slides_control {
+    margin: 15px 0;
 }
 
 
@@ -75,17 +84,7 @@ strong {color:#0d9ce0; font-weight:normal;}
 */
 
 #slides .next,#slides .prev {
-	position:absolute;
-	top:107px;
-	left:-39px;
-	width:24px;
-	height:43px;
 	display:block;
-	z-index:101;
-}
-
-#slides .next {
-	left:585px;
 }
 
 /*

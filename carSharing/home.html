@@ -57,10 +57,16 @@
         </form>
     </div>
     </div>
-    <div id="results">
+    <div id="results" class="padder">
         <h2>Rides expiring soon!</h2>
         <div id="slides">
-            <div class="slides_container"></div>
+            <table>
+                <tr>
+                    <td><td><a href="#" class="prev"><img src="static/img/arrow-prev.png" width="24" height="43" /></a></td>
+                    <td><span class="slides_container"></span></td>
+                    <td><a href="#" class="next"><img src="static/img/arrow-next.png" width="24" height="43" /></a></td>
+                </tr>
+            </table>
         </div>
         <script>
             $(function() {
@@ -74,8 +80,6 @@
                 var urlList = "";
                 $.each(data, function(i, item) {
                     result.push('<div class="slide">');
-                    result.push('<div class="padder searchresult">');
-                    result.push('<h2>' + item.date + ' (redundant) </h2>');
                     result.push('<a href="' + item.link + '"><table class="searchresult-inner">');
                     result.push('<tr>');
                         result.push('<td>');
@@ -104,7 +108,6 @@
                             result.push('</table>');
                         result.push('</td>');
                     result.push('</tr></table></a>');
-                    result.push('</div>');
                     result.push('</div>');
                 });
                 $('.slides_container')[0].innerHTML = result.join('');
