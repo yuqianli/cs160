@@ -19,7 +19,7 @@ body {
 	font:normal 62.5%/1.5 Helvetica, Arial, sans-serif;
 	letter-spacing:0;
 	color:#434343;
-	background:#000;
+	background-color:#1c1c1c;
 	position:relative;
 	-webkit-font-smoothing: subpixel-antialiased;
 }
@@ -57,7 +57,7 @@ strong {color:#0d9ce0; font-weight:normal;}
 	overflow:hidden;
 	position:relative;
 	display:none;
-    background-color:red;
+    background-color:white;
 }
 
 /*
@@ -119,11 +119,13 @@ strong {color:#0d9ce0; font-weight:normal;}
     font-size: 175%;
     line-height: 150%;
     box-sizing: border-box;
-    padding: 1em;
-	background-color:#0d9ce0;
+    padding: 1.5em;
+	xbackground-color:#0d9ce0;
+	background-color:#0d91ce;
     border-radius: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 2em;
     color: #fff;
+    box-shadow: 0 0 5px 1px #151515;
 }
 
 #searchbars {
@@ -166,8 +168,6 @@ header {
 	font-family: Arial;
 	color:#fff;
 	height:70px;
-	background-color:#000;
-	opacity:0.8;
 	padding-top:20px;
 }
 
