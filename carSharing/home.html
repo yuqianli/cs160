@@ -76,7 +76,7 @@
                     result.push('<div class="slide">');
                     result.push('<div class="padder searchresult">');
                     result.push('<h2>' + item.date + ' (redundant) </h2>');
-                    result.push('<table class="searchresult-inner">');
+                    result.push('<a href="' + item.link + '"><table class="searchresult-inner">');
                     result.push('<tr>');
                         result.push('<td>');
                             //result.push('<img src="' + item.image + '"/>');
@@ -103,7 +103,7 @@
                                 result.push('</tr>');
                             result.push('</table>');
                         result.push('</td>');
-                    result.push('</tr></table>');
+                    result.push('</tr></table></a>');
                     result.push('</div>');
                     result.push('</div>');
                 });

@@ -25,6 +25,8 @@ body {
 }
 a:link,a:visited { color:#599100; text-decoration:none; }
 a:hover,a:active { color:#599100; text-decoration:underline; }
+h2 { font-size: 150%; font-weight: bold; margin-bottom: 10px; color: #fff; }   
+strong {color:#0d9ce0; font-weight:normal;}
 
 /*
 	Slideshow
@@ -104,7 +106,7 @@ a:hover,a:active { color:#599100; text-decoration:underline; }
 	height:0;
 	padding-top:12px;
 	background-image:url(../img/pagination.png);
-	background-position:0 50;
+	background-position:0 0;
 	float:left;
 	overflow:hidden;
 }
@@ -122,6 +124,7 @@ a:hover,a:active { color:#599100; text-decoration:underline; }
 	background-color:#0d9ce0;
     border-radius: 15px;
     margin-bottom: 20px;
+    color: #fff;
 }
 
 #searchbars {
