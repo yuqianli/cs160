@@ -58,13 +58,22 @@
                     </form>
                 </div>
             </div>
+            <div style="clear:both;">
+                <form method="post" action="./sort.php">
+                    <table style="width:100%;">
+                        <tr>
+                            <td><h2>Seach Results</h2></td>
+                            <td style="text-align:right;"><input type="submit" value="Sort by Date"></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
             <div id="results"></div>
             <script>
                 $("document").ready(function() {
                     $.getJSON("results.json", function(data) {
                         var result = [];
                         var urlList = "";
-                        result.push("<h2>Search results:</h2>");
                         result.push("<div class='padder'>");
                         $.each(data, function(i, item) {
                             result.push("<a href='"+item.link+"' target='_blank'><table class='searchresult-inner'>");
