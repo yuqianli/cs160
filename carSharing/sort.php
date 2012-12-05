@@ -34,6 +34,7 @@
     $file_contents = file_get_contents("results.json");
     $fh = fopen("results.json", "w"); 
 	$file_contents = str_replace('$0','free',$file_contents);
+    fwrite($fh, json_encode($arr, JSON_UNESCAPED_UNICODE)); 
 
 
     //finish up	
