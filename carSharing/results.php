@@ -160,7 +160,7 @@
     			'originCity' => $originCity,
     			'destinationCity' => $destinationCity,
     			'driver' => $type,
-    			'date' => $departure
+    			'date' => trim($departure)
     	);
     	$j++;
     	if(!$joy[$jindex]->childNodes(1)->childNodes($j)){
