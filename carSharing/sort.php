@@ -29,6 +29,12 @@
     //write to results.json
     $fh = fopen("results.json", 'w');
     fwrite($fh, json_encode($arr, JSON_UNESCAPED_UNICODE)); 
+    
+    // put back free in $0
+    $file_contents = file_get_contents("results.json");
+    $fh = fopen("results.json", "w"); 
+	$file_contents = str_replace('$0','free',$file_contents);
+
 
     //finish up	
     fclose($fh); 
