@@ -1,74 +1,62 @@
 <?php
     // Include the library
     include('simple_html_dom.php');
+	//error_reporting(E_ERROR | E_WARNING | E_PARSE); //error reporting strictness
+
+    //POST search terms
     $origin = $_POST['from'];
     $destination = $_POST['to'];
 	$startDate = $_POST['date'];
 	
+    // a/b/c = month/day/year
+	$startDate = array(
+        'a' => substr($startDate,0,2),
+        'b' => substr($startDate,3,2),
+        'c' => substr($startDate,6,4)
+     );
 	
-	
-	//error_reporting(E_ERROR | E_WARNING | E_PARSE);
-	
-	//a = month
-	//b = day
-	//c = year
-	$startDate = array( 'a' => substr($startDate,0,2),
-						 'b' => substr($startDate,3,2),
-						 'c' => substr($startDate,6,4)
-						 );
-	
-	//extract city info
+    //rebuild origin location for url validity
 	$locationcontents = explode(" ", $origin);
-	
-	//city has two cases.  If the size of the exploded array is greater than 2,
-	//it means that the city has more than one word, so handle that accordingly..
 	$originCity = "";
 	$originState = "";
-	
-	if ( count($locationcontents) > 2)
-	{
+    //if city name has a space in it
+	if ( count($locationcontents) > 2) {
 		$originCity = $locationcontents[0] . "+" . substr($locationcontents[1], 0, (strlen($locationcontents[1]) - 1));
 		$originState = $locationcontents[2];
-	}
-	else
-	{
+	} else {
 		$originCity = $locationcontents[0];
 		$originState = $locationcontents[1];
 	}
 	
-	
+    //rebuild destination location for url validity
 	$destinationContents = explode(" ", $destination);
-	
 	$destinationCity = "";
 	$destinationState = "";
-	
-	if ( count($locationcontents) > 2)
-	{
+    //if city name has a space in it
+	if ( count($locationcontents) > 2) {
 		$destinationCity = $destinationContents[0] . "+" . substr($destinationContents[1], 0, (strlen($destinationContents[1]) - 1));
 		$destinationState = $destinationContents[2];
-	}
-	else
-	{
+	} else {
 		$destinationCity = $destinationContents[0];
 		$destinationState = $destinationContents[1];
 	}
 	
-	//how to convert name of month to number of month
 	
-	//get latitudes/longitudes via google geocode
+    //get origin latitude/longitude via google geocode
 	$originurl = "http://maps.googleapis.com/maps/api/geocode/json?address=$originCity,+$originState&sensor=true";
-	$desturl="http://maps.googleapis.com/maps/api/geocode/json?address=$destinationCity,+$destinationState&sensor=true";
-			
 	$originjson = file_get_contents($originurl);
-	$destinationjson = file_get_contents($desturl);
-	
 	$originj = json_decode($originjson, true);
-	$destj = json_decode($destinationjson, true);
-	
 	$originLat = $originj['results'][0]['geometry']['location']['lat'];
 	$originLon = $originj['results'][0]['geometry']['location']['lng'];
+
+    //get destination latitude/longitude via google geocode
+	$desturl="http://maps.googleapis.com/maps/api/geocode/json?address=$destinationCity,+$destinationState&sensor=true";
+	$destinationjson = file_get_contents($desturl);
+	$destj = json_decode($destinationjson, true);
 	$destinationLat = $destj['results'][0]['geometry']['location']['lat'];
 	$destinationLon = $destj['results'][0]['geometry']['location']['lng'];
+	
+    /*
 	$type="";
 	if(isset($_POST['type'])){
 		if($_POST['type']=="passenger"){
@@ -77,34 +65,25 @@
 			$type="ride_offer";
 		}
 	}
+    */
 	
-    //query site
-    $siteQuery = "http://ridejoy.com/rides/search?utf8=%E2%9C%93&type=$type&origin=$originCity%2C+$originState%2C+USA&origin_latitude=$originLat&origin_longitude=$originLon&destination=$destinationCity%2C+$destinationState%2C+USA&destination_latitude=$destinationLat&destination_longitude=$destinationLon&date=";
-
-    // Retrieve the DOM from a given URL
-    
-    
-    $ridejoy = file_get_html($siteQuery);
+    //retrieve DOM from ridejoy
+    $ridejoy_url = "http://ridejoy.com/rides/search?utf8=%E2%9C%93&type=$type&origin=$originCity%2C+$originState%2C+USA&origin_latitude=$originLat&origin_longitude=$originLon&destination=$destinationCity%2C+$destinationState%2C+USA&destination_latitude=$destinationLat&destination_longitude=$destinationLon&date=";
+    $ridejoy = file_get_html($ridejoy_url);
     
     $joy = $ridejoy->find('div.rides_search_container div.date');
-    //foreach ($ridejoy->find('div.rides_search_container div.date') as $f) {
     $jindex = 0;
     $jindex2 = 0;
     
-    
-    
     	
-    //$usertype = $_POST['type'];
-    $from = explode(", ", $_POST['from']);
-    $to = explode(", ", $_POST['to']);
     
-    $fromCity = str_replace(' ', '+', $from[0]);
-    $fromState = $from[1];
-    $toCity = str_replace(' ', '+', $to[0]);
-    $toState = $to[1];
-    //no need to check, zimride defaults blank dates to current date
-    //$date = $_POST['date'];
-    $url_date = str_replace('/', '%2F', empty($_POST['date'])?$_POST['date']:"");
+    //zimride
+    $fromCity = str_replace(' ', '+', $origin[0]);
+    $fromState = $origin[1];
+    $toCity = str_replace(' ', '+', $destination[0]);
+    $toState = $destination[1];
+    //$url_date = str_replace('/', '%2F', empty($_POST['date'])?$_POST['date']:"");
+    $url_date = $startDate;
     
     // Retrieve the DOM from a given URL
     $page_url = "http://www.zimride.com/search?s=$fromCity%2C+$fromState&e=$toCity%2C+$toState&date=$url_date&s_name=$toCity%2C+$toState&s_full_text=$fromCity%2C+$fromState%2C+USA&s_error_code=&s_address=$fromCity%2C+$fromState%2C+USA&s_city=$fromCity&s_state=$fromState&s_zip=&s_country=US&s_lat=$originLat&s_lng=$originLon&s_location_key=&s_user_lat=&s_user_lng=&s_user_country=&e_name=$toCity%2C+$toState&e_full_text=$toCity%2C+$toState%2C+USA&e_error_code=&e_address=$toCity%2C+$toState%2C+USA&e_city=$toCity&e_state=$toState&e_zip=&e_country=US&e_lat=$destinationLat&e_lng=$destinationLon&e_location_key=&e_user_lat=&e_user_lng=&e_user_country=";

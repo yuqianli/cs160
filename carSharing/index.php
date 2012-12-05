@@ -3,8 +3,8 @@
     include('simple_html_dom.php');
     
     //scrape ridejoy
-    $joy_url = "http://http://www.ridejoy.com/";
-    $joy = file_get_html($zim_url);
+    $joy_url = "http://www.ridejoy.com/";
+    $joy = file_get_html($joy_url);
     $ridejoy = $joy->find('div.ridesets', 0);
     $i=0;
    /* while (!empty($ridejoy->childNodes($i))) {
