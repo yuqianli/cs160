@@ -56,7 +56,7 @@
 	$destinationLat = $destj['results'][0]['geometry']['location']['lat'];
 	$destinationLon = $destj['results'][0]['geometry']['location']['lng'];
 	
-    /*
+    
 	$type="";
 	if(isset($_POST['type'])){
 		if($_POST['type']=="passenger"){
@@ -65,7 +65,7 @@
 			$type="ride_offer";
 		}
 	}
-    */
+    
 	
     //retrieve DOM from ridejoy
     $ridejoy_url = "http://ridejoy.com/rides/search?utf8=%E2%9C%93&type=$type&origin=$originCity%2C+$originState%2C+USA&origin_latitude=$originLat&origin_longitude=$originLon&destination=$destinationCity%2C+$destinationState%2C+USA&destination_latitude=$destinationLat&destination_longitude=$destinationLon&date=";
@@ -90,9 +90,9 @@
     //scrape from ridejoy and zimride
     $jindex = 0;
     $zindex=0;
+    //scrape from ridejoy
+    $j=0;
     while (!empty($joy[$jindex]) || !empty($zim[$zindex])) {
-        //scrape from ridejoy
-        $j=0;
         if(!empty($joy[$jindex])){
             $name = "";
             $link = $joy[$jindex]->childNodes(1)->childNodes($j)->find('a', 0)->href;
@@ -103,16 +103,16 @@
             $destinationCity = $joy[$jindex]->childNodes(1)->childNodes($j)->find('div.destination',0)->plaintext;
             $type = $tmp?"driver":"passenger";
             $departure = $joy[$jindex]->find('div.date_header',0)->plaintext;
-        
+            echo "#".trim($price)."#";
             $arr[] = array(
                 'link' => $link,
-                'price' => $price,
+                'price' => trim($price),
                 'image' => $image,
                 'name' => $name,
                 'originCity' => $originCity,
                 'destinationCity' => $destinationCity,
                 'driver' => $type,
-                'date' => trim($departure)
+                'date' => $departure
             );
             $j++;
             if(!$joy[$jindex]->childNodes(1)->childNodes($j)) {
@@ -137,7 +137,7 @@
                 $city2 = explode("</span>", $main5);
                 $type = $zim[$zindex]->find('div.userpic span.driver',0)?"driver":"passenger";
                 $departure = $zimride->find('div.ride_list',0)->childNodes($cur)->find('span',0)->plaintext;
-
+echo "#$price#";
                 $arr[] = array(
                     'link' => $link,
                     'price' => $price,
