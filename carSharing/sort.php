@@ -38,6 +38,6 @@
 
     //finish up	
     fclose($fh); 
-    $sortpage = file_get_contents('./output.html', false);
+    $sortpage = file_get_contents('./results.html', false);
     echo $sortpage;   
 ?>
