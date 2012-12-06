@@ -60,9 +60,9 @@
 	$type="";
 	if(isset($_POST['type'])){
 		if($_POST['type']=="passenger"){
-			$type="ride_request";
-		}elseif ($_POST['type']=="driver"){
 			$type="ride_offer";
+		}elseif ($_POST['type']=="driver"){
+			$type="ride_request";
 		}
 	}
     
@@ -73,16 +73,35 @@
     $joy = $ridejoy->find('div.rides_search_container div.date');
     
     	
-    /* FIX: should use the same POSTed values as ridejoy */ 
+    //$usertype = $_POST['type'];
+    $from = explode(", ", $_POST['from']);
+    $to = explode(", ", $_POST['to']);
+    
+    $fromCity = str_replace(' ', '+', $from[0]);
+    $fromState = $from[1];
+    $toCity = str_replace(' ', '+', $to[0]);
+    $toState = $to[1];
+    //no need to check, zimride defaults blank dates to current date
+    //$date = $_POST['date'];
+    $url_date = str_replace('/', '%2F', empty($_POST['date'])?$_POST['date']:"");
+    $type="";
+    if(isset($_POST['type'])){
+    	if($_POST['type']=="passenger"){
+    		$type="need";
+    	}elseif ($_POST['type']=="driver"){
+    		$type="offer";
+    	}
+    }
+    /* FIX: should use the same POSTed values as ridejoy 
     $fromCity = str_replace(' ', '+', $origin[0]);
     $fromState = $origin[1];
     $toCity = str_replace(' ', '+', $destination[0]);
     $toState = $destination[1];
     $url_date = str_replace('/', '%2F', empty($_POST['date'])?$_POST['date']:"");
-    /* end FIX */
+    end FIX */
     
     //retrieve DOM from zimride
-    $zim_url = "http://www.zimride.com/search?s=$fromCity%2C+$fromState&e=$toCity%2C+$toState&date=$url_date&s_name=$toCity%2C+$toState&s_full_text=$fromCity%2C+$fromState%2C+USA&s_error_code=&s_address=$fromCity%2C+$fromState%2C+USA&s_city=$fromCity&s_state=$fromState&s_zip=&s_country=US&s_lat=$originLat&s_lng=$originLon&s_location_key=&s_user_lat=&s_user_lng=&s_user_country=&e_name=$toCity%2C+$toState&e_full_text=$toCity%2C+$toState%2C+USA&e_error_code=&e_address=$toCity%2C+$toState%2C+USA&e_city=$toCity&e_state=$toState&e_zip=&e_country=US&e_lat=$destinationLat&e_lng=$destinationLon&e_location_key=&e_user_lat=&e_user_lng=&e_user_country=";
+    $zim_url = "http://www.zimride.com/search?s=$fromCity%2C+$fromState&e=$toCity%2C+$toState&date=$url_date&filter_type=$type&s_name=$toCity%2C+$toState&s_full_text=$fromCity%2C+$fromState%2C+USA&s_error_code=&s_address=$fromCity%2C+$fromState%2C+USA&s_city=$fromCity&s_state=$fromState&s_zip=&s_country=US&s_lat=$originLat&s_lng=$originLon&s_location_key=&s_user_lat=&s_user_lng=&s_user_country=&e_name=$toCity%2C+$toState&e_full_text=$toCity%2C+$toState%2C+USA&e_error_code=&e_address=$toCity%2C+$toState%2C+USA&e_city=$toCity&e_state=$toState&e_zip=&e_country=US&e_lat=$destinationLat&e_lng=$destinationLon&e_location_key=&e_user_lat=&e_user_lng=&e_user_country=";
     $zimride = file_get_html($zim_url);
     //find all TD tags with "align=center"
     $zim = $zimride->find('div.ride_list a') ;
@@ -141,7 +160,7 @@
                 $type = $zim[$zindex]->find('div.userpic span.driver',0)?"driver":"passenger";
                 $departure = $zimride->find('div.ride_list',0)->childNodes($cur)->find('span',0)->plaintext;
                 //remove dash
-                $departure = str_replace('— ', '', $departure);
+                $departure = str_replace('��� ', '', $departure);
 //echo "#$price#";
                 $arr[] = array(
                     'link' => $link,
