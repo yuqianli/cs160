@@ -172,9 +172,23 @@ vertical-align:middle;
                     });
                     result.push('</div>');
                     $('#results')[0].innerHTML = result.join('');
+                    $('.st_facebook').click(function(e) {
+                	    e.stopPropagation();
+                    });
+                    $('.st_googleplus').click(function(e) {
+                	    e.stopPropagation();
+                    });
+                    $('.st_twitter').click(function(e) {
+                	    e.stopPropagation();
+                    });
+                    $('.st_linkedin').click(function(e) {
+                	    e.stopPropagation();
+                    });
+                    $('.st_email').click(function(e) {
+                	    e.stopPropagation();
+                    });
                     for(var i=1; i<counter;i++){
                         $('#searchresult-inner'+i).click(function() {
-                        	//alert(this.firstChild.firstChild.firstChild);
                     	    window.open(this.firstChild.firstChild.firstChild.firstChild);
                         });
                         $("#trigger"+i).click(function(e) {
@@ -189,8 +203,8 @@ vertical-align:middle;
                             });
                             directionsDisplay.setMap(map);
                             var request = {
-                            	       origin: this.firstChild.innerHTML+', CA',  // parse the origin from JSON file
-                            	       destination: this.childNodes.item(1).innerHTML+', CA',	//parse the destination from JSON file
+                            	       origin: this.firstChild.innerHTML,//+', CA',  // parse the origin from JSON file
+                            	       destination: this.childNodes.item(1).innerHTML,//+', CA',	//parse the destination from JSON file
                             	       travelMode: google.maps.DirectionsTravelMode.DRIVING
                             	     };
                             
