@@ -103,6 +103,9 @@
             $destinationCity = $joy[$jindex]->childNodes(1)->childNodes($j)->find('div.destination',0)->plaintext;
             $type = $tmp?"driver":"passenger";
             $departure = $joy[$jindex]->find('div.date_header',0)->plaintext;
+            //add commas
+            $departure = str_replace('day ', 'day, ', $departure);
+
             //echo "#".trim($price)."#";
             $arr[] = array(
                 'link' => $link,
@@ -137,6 +140,8 @@
                 $city2 = explode("</span>", $main5);
                 $type = $zim[$zindex]->find('div.userpic span.driver',0)?"driver":"passenger";
                 $departure = $zimride->find('div.ride_list',0)->childNodes($cur)->find('span',0)->plaintext;
+                //remove dash
+                $departure = str_replace('— ', '', $departure);
 //echo "#$price#";
                 $arr[] = array(
                     'link' => $link,
