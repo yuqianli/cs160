@@ -24,7 +24,7 @@ body {
 	-webkit-font-smoothing: subpixel-antialiased;
 }
 a:link,a:visited { color:#599100; text-decoration:none; }
-a:hover,a:active { color:#599100; text-decoration:underline; }
+a:hover,a:active { color:#599100; text-decoration:none; }
 h2 { font-size: 150%; font-weight: bold; margin-bottom: 10px; color: #fff; }   
 strong {color:#0d9ce0; font-weight:normal;}
 .popout {
@@ -202,6 +202,10 @@ strong {color:#0d9ce0; font-weight:normal;}
 	padding-top:10px;
 	background-image:url(../img/logo.png);
 	background-repeat:no-repeat;
+}
+
+.logo a {
+    color: #fff;
 }
 
 header b {color:#717171; font-size:13px; float:right; margin-top:-37px;}
