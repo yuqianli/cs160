@@ -2,12 +2,74 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>CarJackers!</title>
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css"/>
         <link href="static/css/style.css" rel="stylesheet" type="text/css">
         <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
         <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
         <script src="static/js/slides.min.jquery.js"></script>
         <script src="static/js/jquery.tools.min.js"></script>
+        <script type="text/javascript">
+            $(function() {
+                $('#datepicker').datepicker({ minDate: 0 });
+            });
+        </script>
+        <style>
+
+.trigger{
+text-align:center;
+vertical-align:middle;
+}
+/* the overlayed element */
+.glass_overlay {
+
+    margin-left:200px;
+
+    /* must be initially hidden */
+    display:none;
+
+    /* place overlay on top of other elements */
+    z-index:10000;
+
+    /* styling */
+    background-color:#333;
+
+    width:750px;
+    min-height:200px;
+    border:1px solid #666;
+
+    /* CSS3 styling for latest browsers */
+    -moz-box-shadow:0 0 90px 5px #000;
+    -webkit-box-shadow: 0 0 90px #000;
+}
+
+/* close button positioned on upper right corner */
+.glass_overlay .close {
+    background-image:url(static/img/close.png);
+    position:absolute;
+    right:-15px;
+    top:-15px;
+    cursor:pointer;
+    height:35px;
+    width:35px;
+}
+
+
+    /* styling for elements inside overlay */
+  .details {
+  position:absolute;
+  top:15px;
+  right:15px;
+  font-size:11px;
+  color:#fff;
+  width:150px;
+  }
+
+  .details h3 {
+  color:#aba;
+  font-size:15px;
+  }
+  </style>
 		<!-- For Social sharing -->
 		<script type="text/javascript">var switchTo5x=true;</script>
 		<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
@@ -15,6 +77,7 @@
 		<!-- Social sharing -->
     </head>
     <body>
+    <div class="glass_overlay"><h3 class="details">Let's figure out the content!</h3></div>
         <div id="container">
             <div class="logo">
                 <h1><strong>CAR</strong>JACKERS</h1>
@@ -45,11 +108,6 @@
                             <tr>
                                 <td>Date</td>
                                 <td><input name="date" type="text" id="datepicker" placeholder="Choose a date"/></td>
-                                <script>
-                                    $(function() {
-                                        $('#datepicker').datepicker({ minDate: 0 });
-                                    });
-                                </script>
                             </tr>
                             <tr>
                                 <td></td>
@@ -73,18 +131,19 @@
             <script>
                 $("document").ready(function() {
                     $.getJSON("results.json", function(data) {
+                        var counter = 1;
                         var result = [];
                         var urlList = "";
                         result.push("<div class='padder'>");
                         $.each(data, function(i, item) {
-                            result.push("<a href='"+item.link+"' target='_blank'><table class='searchresult-inner'>");
+                            result.push("<table class='searchresult-inner' id='searchresult-inner"+counter+"'>");
                                 result.push("<tr>");
-                                    result.push("<td style='vertical-align:middle;width:100px;'><img src='"+item.image+"'/></td>");
+                                    result.push("<td style='vertical-align:middle;width:100px;'><a href='"+item.link+"'></a><img src='"+item.image+"'/></td>");
                                     result.push("<td style='vertical-align:middle;'>");
                                         result.push("<table style='width:100%;'>");
                                             result.push("<tr>");
-                                                result.push("<td><span class='popout'>"+item.price+"</span></td>");
-                                                result.push("<td style='text-align:right;'><span class='popout'>"+/*item.price+*/"</span></td>");
+                                                result.push("<td><span class='popout'>"+item.name+"</span></td>");
+                                                result.push("<td style='text-align:right;'><span class='popout'>"+item.price+"</span></td>");
                                             result.push("</tr>");
                                             result.push("<tr>");
                                                 result.push("<td>"+item.originCity+" -> "+item.destinationCity+"</td>");
@@ -96,12 +155,22 @@
                                             result.push("</tr>");
                                         result.push("</table>");
                                     result.push("</td>");
-                                    result.push("<td style='text-align:center;vertical-align:middle;'><a href='javascript:alert(\"Incomplete :(\");'><img src='static/img/glass.png'/></a></span></td>");
+                                    result.push("<td class='trigger' id='trigger"+counter+"'><img src='static/img/glass.png'/ rel=\"#glass"+(counter++)+"\"></td>");
                                 result.push("</tr>");
-                            result.push("</table></a>");
+                                result.push("</table>");
                         });
                         result.push('</div>');
                         $('#results')[0].innerHTML = result.join('');
+                        for(var i=1; i<counter;i++){
+                            $('#searchresult-inner'+i).click(function() {;
+                        	    window.open(this.firstChild.firstChild.firstChild.firstChild);
+                            });
+                            $("#trigger"+i).click(function(e) {
+                            	$(".glass_overlay").overlay().load();
+                        	    e.stopPropagation();
+                            });
+                        }
+                        $(".glass_overlay").overlay();
                     });
                 });
             </script>
