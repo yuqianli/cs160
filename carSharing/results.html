@@ -151,7 +151,11 @@ vertical-align:middle;
                                             result.push("</tr>");
                                             result.push("<tr>");
                                                 result.push("<td><i>" + item.driver + "</i></td>");
-                                                result.push("<td style='text-align:right;'><span class='st_facebook' ></span><span class='st_googleplus' ></span><span class='st_twitter' ></span><span class='st_linkedin' ></span><span class='st_email' ></span></td>");
+                                                result.push("<td style='text-align:right;'><span class='st_facebook' st_title='" + item.driver + " looking for "+item.originCity+" -> "+item.destinationCity+" for "+item.price+"' st_url='" +item.link+ "' ></span>"
+												+ "<span class='st_googleplus' st_title='" + item.driver + " looking for "+item.originCity+" -> "+item.destinationCity+" for "+item.price+"' st_url='" +item.link+ "' ></span>"
+												+ "<span class='st_twitter' st_title='" + item.driver + " looking for "+item.originCity+" -> "+item.destinationCity+" for "+item.price+"' st_url='" +item.link+ "' ></span>"
+												+ "<span class='st_linkedin' st_title='" + item.driver + " looking for "+item.originCity+" -> "+item.destinationCity+" for "+item.price+"' st_url='" +item.link+ "' ></span>"
+												+ "<span class='st_email' st_title='" + item.driver + " looking for "+item.originCity+" -> "+item.destinationCity+" for "+item.price+"' st_url='" +item.link+ "'></span></td>");
                                             result.push("</tr>");
                                         result.push("</table>");
                                     result.push("</td>");
