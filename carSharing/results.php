@@ -160,7 +160,7 @@
                 $type = $zim[$zindex]->find('div.userpic span.driver',0)?"driver":"passenger";
                 $departure = $zimride->find('div.ride_list',0)->childNodes($cur)->find('span',0)->plaintext;
                 //remove dash
-                $departure = str_replace('��� ', '', $departure);
+                $departure = str_replace('— ', '', $departure);
 //echo "#$price#";
                 $rides[] = array(
                     'link' => $link,
@@ -223,54 +223,7 @@
                 $('#datepicker').datepicker({ minDate: 0 });
             });
 
-            $("document").ready(function() {
-                    
-                   // $('#results')[0].innerHTML = result.join('');
-                    $('.st_facebook').click(function(e) {
-                	    e.stopPropagation();
-                    });
-                    $('.st_googleplus').click(function(e) {
-                	    e.stopPropagation();
-                    });
-                    $('.st_twitter').click(function(e) {
-                	    e.stopPropagation();
-                    });
-                    $('.st_linkedin').click(function(e) {
-                	    e.stopPropagation();
-                    });
-                    $('.st_email').click(function(e) {
-                	    e.stopPropagation();
-                    });
-                    for(var i=1; i<<?=$counter?>;i++){
-                        $('#searchresult-inner'+i).click(function() {
-                    	    window.open(this.firstChild.firstChild.firstChild.firstChild);
-                        });
-                        $("#trigger"+i).click(function(e) {
-                        	$(".glass_overlay").overlay().load();
-                    	    e.stopPropagation();
-                        	var directionsService = new google.maps.DirectionsService();
-                            var directionsDisplay = new google.maps.DirectionsRenderer();
-
-                            var map = new google.maps.Map(document.getElementById('map'), {
-                              zoom:7,
-                              mapTypeId: google.maps.MapTypeId.ROADMAP
-                            });
-                            directionsDisplay.setMap(map);
-                            var request = {
-                            	       origin: this.firstChild.innerHTML,//+', CA',  // parse the origin from JSON file
-                            	       destination: this.childNodes.item(1).innerHTML,//+', CA',	//parse the destination from JSON file
-                            	       travelMode: google.maps.DirectionsTravelMode.DRIVING
-                            	     };
-                            
-                            directionsService.route(request, function(response, status) {
-                                if (status == google.maps.DirectionsStatus.OK) {
-                                  directionsDisplay.setDirections(response);
-                                }
-                              });
-                        });
-                    }
-                    $(".glass_overlay").overlay();
-                });      
+            
         </script>
         <style>
 
@@ -389,9 +342,9 @@ vertical-align:middle;
 $counter = 1;
             foreach ($rides as $ride){
             	?>
-            	<table class='searchresult-inner' id='searchresult-inner"<?=$counter ?>"'>
+            	<table class='searchresult-inner' id='searchresult-inner<?=$counter ?>'>
             	<tr>
-            	<td style='vertical-align:middle;width:100px;'><a href='<?=$ride['link'] ?>'></a><img src='<?=$ride['image'] ?>' height='60px' width='60px'/></td>
+            	<td style='vertical-align:middle;width:100px;'><div style="display:none;"><?=$ride['link'] ?></div><img src='<?=$ride['image'] ?>' height='60px' width='60px'/></td>
             	<td style='vertical-align:middle;'>
             	<table style='width:100%;'>
             	<tr>
@@ -413,7 +366,7 @@ $counter = 1;
             	</td></tr>
             	</table>
             	</td>
-            	<td class='trigger' id='trigger"+counter+"'><div style='display:none;' id='originCity<?=$counter?>'><?=$ride['originCity'] ?></div><div style='display:none;' id='destinationCity<?=$counter++ ?>'><?=$ride['destinationCity'] ?></div><img src='static/img/glass.png'></td>
+            	<td class='trigger' id='trigger<?=$counter?>'><div style='display:none;' id='originCity<?=$counter?>'><?=$ride['originCity'] ?></div><div style='display:none;' id='destinationCity<?=$counter++ ?>'><?=$ride['destinationCity'] ?></div><img src='static/img/glass.png'></td>
             	</tr>
             	</table>
             	<?php 
@@ -423,5 +376,56 @@ $counter = 1;
             </div>
             </div>
     </div>
+    
+    <script type="text/javascript">
+    $("document").ready(function() {
+        
+        // $('#results')[0].innerHTML = result.join('');
+         $('.st_facebook').click(function(e) {
+     	    e.stopPropagation();
+         });
+         $('.st_googleplus').click(function(e) {
+     	    e.stopPropagation();
+         });
+         $('.st_twitter').click(function(e) {
+     	    e.stopPropagation();
+         });
+         $('.st_linkedin').click(function(e) {
+     	    e.stopPropagation();
+         });
+         $('.st_email').click(function(e) {
+     	    e.stopPropagation();
+         });
+         for(var i=1; i<<?=$counter?>;i++){
+             $('#searchresult-inner'+i).click(function() {
+         	    window.open(this.children[0].children[0].children[0].children[0].innerText);
+             });
+             $("#trigger"+i).click(function(e) {
+             	$(".glass_overlay").overlay().load();
+         	    e.stopPropagation();
+             	var directionsService = new google.maps.DirectionsService();
+                 var directionsDisplay = new google.maps.DirectionsRenderer();
+
+                 var map = new google.maps.Map(document.getElementById('map'), {
+                   zoom:7,
+                   mapTypeId: google.maps.MapTypeId.ROADMAP
+                 });
+                 directionsDisplay.setMap(map);
+                 var request = {
+                 	       origin: this.firstChild.innerHTML,//+', CA',  // parse the origin from JSON file
+                 	       destination: this.childNodes.item(1).innerHTML,//+', CA',	//parse the destination from JSON file
+                 	       travelMode: google.maps.DirectionsTravelMode.DRIVING
+                 	     };
+                 
+                 directionsService.route(request, function(response, status) {
+                     if (status == google.maps.DirectionsStatus.OK) {
+                       directionsDisplay.setDirections(response);
+                     }
+                   });
+             });
+         }
+         $(".glass_overlay").overlay();
+     });      
+    </script>
 </body>
 </html>
