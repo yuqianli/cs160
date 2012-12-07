@@ -9,7 +9,13 @@
         <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
         <script src="static/js/slides.min.jquery.js"></script>
         <script src="static/js/jquery.tools.min.js"></script>
+        <script src="static/js/scripts.js"></script>
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+		<!-- For Social sharing -->
+		<script type="text/javascript">var switchTo5x=true;</script>
+		<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+		<script type="text/javascript">stLight.options({publisher: "7ff40cca-f7f1-4de4-b3af-ef52c7cd6080"});</script>
+		<!-- Social sharing -->
         <script type="text/javascript">
             $(function() {
                 $('#datepicker').datepicker({ minDate: 0 });
@@ -71,11 +77,6 @@ vertical-align:middle;
   font-size:15px;
   }
   </style>
-		<!-- For Social sharing -->
-		<script type="text/javascript">var switchTo5x=true;</script>
-		<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-		<script type="text/javascript">stLight.options({publisher: "7ff40cca-f7f1-4de4-b3af-ef52c7cd6080"});</script>
-		<!-- Social sharing -->
     </head>
     <body>
     <div class="glass_overlay">
@@ -84,12 +85,12 @@ vertical-align:middle;
     </div>
     <div id="container">
     <div class="logo">
-        <h1><a href="/"><strong>CAR</strong>JACKERS</a></h1>
+        <h1><a href="./"><strong>CAR</strong>JACKERS</a></h1>
     </div>
 
     <div id="searchbars">
         <div class="padder-mini">
-            <form method="post" action="./results.php">
+            <form method="post" action="./results.php" name="searchbars" onsubmit="return validate();">
                 <table>
                     <tr>
                         <td>I am a</td>

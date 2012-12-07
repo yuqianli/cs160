@@ -131,8 +131,8 @@
                 'price' => trim($price),
                 'image' => $image,
                 'name' => $name,
-                'originCity' => $originCity,
-                'destinationCity' => $destinationCity,
+                'originCity' => trim($originCity),
+                'destinationCity' => trim($destinationCity),
                 'driver' => $type,
                 'date' => $departure
             );
@@ -167,8 +167,8 @@
                     'price' => $price,
                     'image' => $image,
                     'name' => $name,
-                    'originCity' => $city1[0],
-                    'destinationCity' => $city2[1],
+                    'originCity' => trim($city1[0]),
+                    'destinationCity' => trim($city2[1]),
                     'driver' => $type,
                     'date' => $departure
                 );

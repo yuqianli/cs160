@@ -41,8 +41,8 @@
     			'price' => $price,
     			'image' => $image,
     			'name' => $name,
-    			'originCity' => $city1,
-    			'destinationCity' => $city2,
+    			'originCity' => trim($city1),
+    			'destinationCity' => trim($city2),
     			'driver' => $type,
     			'date' => $date
     	);
