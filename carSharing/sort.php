@@ -21,14 +21,15 @@ session_start();
     }
 
     //sort data
-    $arr = $data;
-    usort($arr,"cmp");
+    $rides = $data;
+    usort($rides,"cmp");
 
     //put '$' back in price
-    for ($i = 0; $i < count($arr); $i++) {
-        $arr[$i]['price'] = '$' . $arr[$i]['price'];
+    for ($i = 0; $i < count($rides); $i++) {
+        $rides[$i]['price'] = '$' . $rides[$i]['price'];
     }
-     
+    $_SESSION['rides'] = $rides;
+     /*
     //write to results.json
     $fh = fopen("results.json", 'w');
     fwrite($fh, json_encode($arr)); 
@@ -43,5 +44,6 @@ session_start();
     //finish up	
     fclose($fh); 
     $sortpage = file_get_contents('./results.html', false);
-    echo $sortpage; 
+    echo $sortpage; */
+    include('results.inc');
 ?>
