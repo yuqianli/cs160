@@ -9,6 +9,7 @@
         <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
         <script src="static/js/slides.min.jquery.js"></script>
         <script src="static/js/jquery.tools.min.js"></script>
+        <script src="static/js/scripts.js"></script>
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 		<!-- For Social sharing -->
 		<script type="text/javascript">var switchTo5x=true;</script>

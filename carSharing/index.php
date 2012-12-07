@@ -246,7 +246,7 @@ vertical-align:middle;
 
     <div id="searchbars">
         <div class="padder-mini">
-            <form method="post" action="./results.php" name="searchbars" onsubmit="return validate();">
+            <form method="post" action="./results.php" name="searchform" onsubmit="return validate();">
                 <table>
                     <tr>
                         <td>I am a</td>

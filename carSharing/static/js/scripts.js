@@ -3,10 +3,10 @@ function validate() {
     var illegal_chars = '~!@#$%^&*()_+=`:;\'"/?[]{}\\|';
     illegal_chars = illegal_chars.split('');
     illegal_chars.forEach(function(c) {
-        if ((document.forms['searchfrom']['from'].value).indexOf(c) != -1) {
+        if ((document.forms['searchform']['from'].value).indexOf(c) != -1) {
             err.push("Illegal character '" + c + " 'in starting location!"); 
         }
-        if ((document.forms['searchfrom']['to'].value).indexOf(c) != -1) {
+        if ((document.forms['searchform']['to'].value).indexOf(c) != -1) {
             err.push("Illegal character '" + c + " 'in ending location!"); 
         }
     });
