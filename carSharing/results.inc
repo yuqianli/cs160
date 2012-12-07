@@ -81,8 +81,12 @@
                  	    window.open(this.children[0].children[0].children[0].children[0].innerText);
                      });
                      $("#trigger"+i).click(function(e) {
-                     	$(".glass_overlay").overlay().load();
+                    	$.post("ajax.php", { url: $(this).parent().children()[0].children[0].innerHTML },
+                				function(data){
+                				    $('#name').html(data);
+                				});
                  	    e.stopPropagation();
+                	    $("#pic").html("<img style='float: left; margin-left:30px; margin-top:30px;' src='"+this.childNodes.item(2).innerHTML+"' />");
                      	var directionsService = new google.maps.DirectionsService();
                          var directionsDisplay = new google.maps.DirectionsRenderer();
 
@@ -102,6 +106,7 @@
                                directionsDisplay.setDirections(response);
                              }
                            });
+                      	$(".glass_overlay").overlay().load();
                      });
                  }
                  $(".glass_overlay").overlay();
@@ -151,25 +156,20 @@ vertical-align:middle;
 
 
     /* styling for elements inside overlay */
-  .details {
-  position:absolute;
-  top:15px;
-  right:15px;
-  font-size:11px;
+  #name {
+  float: left;
+  margin-top:45px;
+  margin-left:45px;
+  font-size:41px;
   color:#fff;
   width:150px;
-  }
-
-  .details h3 {
-  color:#aba;
-  font-size:15px;
-  }
   </style>
     </head>
     <body>
     <div class="glass_overlay">
-    <div id="map" style="width: 350px; height: 400px; float: left;"></div> 
-    <h3 class="details">Let's figure out the content!</h3>
+    <div id="pic"></div>
+    <div id="name"></div>
+    <div id="map" style="width: 350px; height: 400px; float: right;"></div> 
     </div>
     <div id="container">
             <div class="logo">
