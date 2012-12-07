@@ -107,6 +107,45 @@
 		<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
 		<script type="text/javascript">stLight.options({publisher: "7ff40cca-f7f1-4de4-b3af-ef52c7cd6080"});</script>
 		<!-- Social sharing -->
+		
+		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+		
+		<script>  //Google Map Autocomplete
+		function initialize() {
+		var originInput = document.getElementById('from');
+		var originAutocomplete = new google.maps.places.Autocomplete(originInput);
+		
+		google.maps.event.addListener(originAutocomplete, 'place_changed',function () {
+			// Set the origin input as none
+			originInput.className = '';
+			// Retrive the location based on the current autcomplete
+			var lPlace = originAutocomplete.getPlace();
+			// If the returned place is not on the map, stop performing the process
+			if (!lPlace.geometry) {
+				originInput.className = 'not found';
+				return;
+			}  // if
+			});  
+          		 
+		var destinationInput = document.getElementById('to');
+		var destinationAutocomplete = new google.maps.places.Autocomplete(destinationInput);
+		
+		google.maps.event.addListener(destinationAutocomplete, 'place_changed',function () {
+			// Set the origin input as none
+			destinationInput.className = '';
+			// Retrive the location based on the current autcomplete
+			var lPlace = destinationAutocomplete.getPlace();
+			// If the returned place is not on the map, stop performing the process
+			if (!lPlace.geometry) {
+				destinationInput.className = 'not found';
+				return;
+			}  // if
+			});  
+        }	 
+		
+		google.maps.event.addDomListener(window, 'load', initialize);
+        </script>
+		
         <script type="text/javascript">
             $(function() {
                 $('#datepicker').datepicker({ minDate: 0 });
@@ -261,11 +300,11 @@ vertical-align:middle;
                     </tr>
                     <tr>
                         <td>From</td>
-                        <td><input name="from" id="fr1" type="text" value="San Francisco, CA"></td>
+                        <td><input name="from" id="from" type="text"></td>
                     </tr>
                     <tr>
                         <td>To</td>
-                        <td><input name="to" id="fr1" type="text" value="Los Angeles, CA"></td>
+                        <td><input name="to" id="to" type="text"></td>
                     </tr>
                     <tr>
                         <td>Date</td>
