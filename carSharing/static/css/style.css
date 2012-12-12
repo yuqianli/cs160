@@ -133,6 +133,7 @@ strong {color:#0d9ce0; font-weight:normal;}
     color: #fff;
     box-shadow: 0 0 5px 1px #151515;
     background:-webkit-gradient(linear, left top, left bottom, from(#0d9ce0), to(#1385ba));
+    background: linear-gradient(180deg, #0d9ce0, #1385ba);
 }
 
 .padder {
@@ -171,11 +172,13 @@ strong {color:#0d9ce0; font-weight:normal;}
 	background-color: #eee;
     width: 100%;
     background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#dddddd));
+    background: linear-gradient(180deg, #ffffff, #dddddd);
     margin-bottom: 1px;
 }
 
 .searchresult-inner:hover {
     background: -webkit-gradient(linear, left top, left bottom, from(#fdffbc), to(#fdffbc));
+    background: linear-gradient(180deg, #fdffbc, #fdffbc);
 }
 
 .caption {
