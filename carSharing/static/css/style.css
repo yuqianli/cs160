@@ -208,6 +208,20 @@ strong {color:#0d9ce0; font-weight:normal;}
 
 /* Other stuff */
 
+.padder-index {
+    line-height: 150%;
+    box-sizing: border-box;
+    padding: 0px;
+	background-color:none;
+    border-radius: 15px;
+	margin-top: 675px;
+    margin-bottom: 5px;
+	position: fixed;
+    color: #fff;
+    width: 100%;   
+		
+}
+
 .padder {
     line-height: 150%;
     box-sizing: border-box;

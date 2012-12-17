@@ -281,19 +281,38 @@ vertical-align:middle;
   </style>
     </head>
     <body>
+     <section id="banner">
+		<div id="bannershow">
+	<ul>
+		<li><img src="static/img/goldengate.jpg" alt="SF" /></li>
+        <li><img src="static/img/LA.jpg" alt="LA" /></li>
+        <li><img src="static/img/route66.jpg" alt="66" /></li>
+        <li><img src="static/img/Vegas.jpg" alt="Vegas" /></li>
+        <li><img src="static/img/newyork.jpg" alt="NY" /></li>
+	</ul>
+    </div>
+    </section>
     <div id="glass_overlay">
       <div id="pic"></div>
       <div id="name"></div>
       <div id="map" style="width: 350px; height: 400px; float: right;"></div> 
     </div>
     <div id="container">
+    <section id="content">
     <div class="logo">
-        <h1><a href="./"><strong>CAR</strong>JACKERS</a></h1>
-    </div>
-
+        <h1><a href="/index.php"><i>Our Prices are a <strong>STEAL!</strong></i></a></h1>
+        <b><object type="application/x-shockwave-flash" data="static/audio/audio_player.swf" width="200" height="20">
+    <param name="movie" value="static/audio/audio_player.swf" />
+    <param name="bgcolor" value="#1c1c1c" />
+    <param name="FlashVars" value="mp3=static/audio/America_Instrumental.mp3&amp;autoplay=1&amp;volume=20&amp;showvolume=1" />
+</object></b>    </div>
+	</section>
+ 
+<section id="banner">    
+    <article>
     <div id="searchbars">
-        <div class="padder-mini">
-            <form method="post" action="./results.php" name="searchform" onsubmit="return validate();">
+        <div class="index-mini">
+            <form method="post" action="./results.php" name="searchform" onSubmit="return validate();">
                 <table>
                     <tr>
                         <td>I am a</td>
@@ -303,8 +322,7 @@ vertical-align:middle;
                                     <td><input name="type" id="fr1" type="radio" value="passenger">Passenger</td>
                                     <td><input name="type" id="fr1" type="radio" value="driver">Driver</td>
                                 </tr>
-                            </table>
-                        </td>
+                            </table>                        </td>
                     </tr>
                     <tr>
                         <td>From</td>
@@ -326,6 +344,8 @@ vertical-align:middle;
             </form>
         </div>
     </div>
+    </article>
+</section>    
     <div class="splitter">
         <h2 style="margin-top:30px;">Freshly jacked rides</h2>
     </div>
@@ -382,6 +402,17 @@ vertical-align:middle;
         </div>
     </div>
     </div>
+    
+
+<section id="footer">    
+<br><center><a href="/index.php"><img src="static/img/cj_logo_footer.png" alt="CarJackers"/></a></center></br>
+</section>
+
+
+<script src="static/js/craftyslide.min.js"></script>
+<script>
+$("#bannershow").craftyslide();
+</script> 
     </body>
 </html>
 
