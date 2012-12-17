@@ -2,7 +2,7 @@
 <java version="1.7.0_07" class="java.beans.XMLDecoder">
  <object class="com.horstmann.violet.ClassDiagramGraph">
   <void method="addNode">
-   <object class="com.horstmann.violet.ClassNode">
+   <object class="com.horstmann.violet.ClassNode" id="ClassNode0">
     <void property="attributes">
      <void property="text">
       <string>numberOfHits: Integer
@@ -44,10 +44,18 @@ results: Array[Car]</string>
    </object>
   </void>
   <void method="addNode">
-   <object class="com.horstmann.violet.ClassNode">
+   <object class="com.horstmann.violet.ClassNode" id="ClassNode1">
+    <void property="attributes">
+     <void property="text">
+      <string>name: String
+driver: boolean
+origin: String
+destination: String</string>
+     </void>
+    </void>
     <void property="name">
      <void property="text">
-      <string>Driver</string>
+      <string>User</string>
      </void>
     </void>
    </object>
@@ -61,18 +69,33 @@ results: Array[Car]</string>
         <void method="set">
          <object idref="Point2D$Double1">
           <void method="setLocation">
-           <double>433.0</double>
-           <double>295.0</double>
+           <double>392.0</double>
+           <double>254.0</double>
           </void>
          </object>
-         <double>295.0</double>
+         <double>254.0</double>
         </void>
        </void>
       </object>
-      <double>433.0</double>
+      <double>392.0</double>
      </void>
     </void>
    </object>
+  </void>
+  <void method="connect">
+   <object class="com.horstmann.violet.ClassRelationshipEdge">
+    <void property="bentStyle">
+     <object class="com.horstmann.violet.BentStyle" field="HVH"/>
+    </void>
+    <void property="startArrowHead">
+     <object class="com.horstmann.violet.ArrowHead" field="BLACK_DIAMOND"/>
+    </void>
+    <void property="startLabel">
+     <string>0..*</string>
+    </void>
+   </object>
+   <object idref="ClassNode0"/>
+   <object idref="ClassNode1"/>
   </void>
  </object>
 </java>
