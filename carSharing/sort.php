@@ -3,7 +3,7 @@
     //$str_data = file_get_contents("results.json"); 
     //$data = json_decode($str_data,true);
 session_start();
-    echo $_SESSION['rides'];
+    //echo $_SESSION['rides'];
     $data = $_SESSION['rides'];   
 
     //replace 'free' and '$' in prices

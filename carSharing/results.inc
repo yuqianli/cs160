@@ -81,12 +81,16 @@
                  	    window.open(this.children[0].children[0].children[0].children[0].innerText);
                      });
                      $("#trigger"+i).click(function(e) {
-                    	$.post("ajax.php", { url: $(this).parent().children()[0].children[0].innerHTML },
-                				function(data){
-                				    $('#name').html(data);
-                				});
+                    	 if($.trim(this.childNodes.item(2).innerHTML) == ""){
+                         	$.post("ajax.php", { url: $(this).parent().children()[0].children[0].innerHTML },
+                     				function(data){
+                     				    $('#name').html(data);
+                     				});
+                              }else{
+                             	 $('#name').html($.trim(this.childNodes.item(2).innerHTML));
+                              }
                  	    e.stopPropagation();
-                	    $("#pic").html("<img style='float: left; margin-left:30px; margin-top:30px;' src='"+this.childNodes.item(2).innerHTML+"' />");
+                	    $("#pic").html("<img style='float: left; margin-left:30px; margin-top:30px;' src='"+this.childNodes.item(3).innerHTML+"' />");
                      	var directionsService = new google.maps.DirectionsService();
                          var directionsDisplay = new google.maps.DirectionsRenderer();
 
@@ -106,10 +110,10 @@
                                directionsDisplay.setDirections(response);
                              }
                            });
-                      	$(".glass_overlay").overlay().load();
+                      	$("#glass_overlay").overlay().load();
                      });
                  }
-                 $(".glass_overlay").overlay();
+                 $("#glass_overlay").overlay();
              });      
 
             
@@ -121,7 +125,7 @@ text-align:center;
 vertical-align:middle;
 }
 /* the overlayed element */
-.glass_overlay {
+#glass_overlay {
 
     margin-left:200px;
 
@@ -144,8 +148,9 @@ vertical-align:middle;
 }
 
 /* close button positioned on upper right corner */
-.glass_overlay .close {
+#glass_overlay .close {
     background-image:url(static/img/close.png);
+    z-index:90000;
     position:absolute;
     right:-15px;
     top:-15px;
@@ -166,7 +171,7 @@ vertical-align:middle;
   </style>
     </head>
     <body>
-    <div class="glass_overlay">
+    <div id="glass_overlay">
     <div id="pic"></div>
     <div id="name"></div>
     <div id="map" style="width: 350px; height: 400px; float: right;"></div> 
@@ -250,7 +255,7 @@ vertical-align:middle;
             	</td></tr>
             	</table>
             	</td>
-            	<td class='trigger' id='trigger<?=$counter?>'><div style='display:none;' id='originCity<?=$counter?>'><?=$ride['originCity'] ?></div><div style='display:none;' id='destinationCity<?=$counter++ ?>'><?=$ride['destinationCity'] ?></div><img src='static/img/glass.png'></td>
+            	<td class='trigger' id='trigger<?=$counter?>'><div style='display:none;' id='originCity<?=$counter?>'><?=$ride['originCity'] ?></div><div style='display:none;' id='destinationCity<?=$counter++ ?>'><?=$ride['destinationCity'] ?></div><div style="display:none;"><?=$ride['name'] ?></div><div style="display:none;"><?=$ride['image'] ?></div><img src='static/img/glass.png'></td>
             	</tr>
             	</table>
             	<?php 
