@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.7.0_07" class="java.beans.XMLDecoder">
+ <object class="com.horstmann.violet.ClassDiagramGraph">
+  <void method="addNode">
+   <object class="com.horstmann.violet.ClassNode">
+    <void property="attributes">
+     <void property="text">
+      <string>numberOfHits: Integer
+results: Array[Car]</string>
+     </void>
+    </void>
+    <void property="methods">
+     <void property="text">
+      <string>filterByMake: Array[Car]</string>
+     </void>
+    </void>
+    <void property="name">
+     <void property="text">
+      <string>SearchResults</string>
+     </void>
+    </void>
+   </object>
+   <object class="java.awt.geom.Point2D$Double" id="Point2D$Double0">
+    <void class="java.awt.geom.Point2D$Double" method="getField">
+     <string>x</string>
+     <void method="set">
+      <object idref="Point2D$Double0">
+       <void class="java.awt.geom.Point2D$Double" method="getField">
+        <string>y</string>
+        <void method="set">
+         <object idref="Point2D$Double0">
+          <void method="setLocation">
+           <double>160.0</double>
+           <double>275.0</double>
+          </void>
+         </object>
+         <double>275.0</double>
+        </void>
+       </void>
+      </object>
+      <double>160.0</double>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="addNode">
+   <object class="com.horstmann.violet.ClassNode">
+    <void property="name">
+     <void property="text">
+      <string>Driver</string>
+     </void>
+    </void>
+   </object>
+   <object class="java.awt.geom.Point2D$Double" id="Point2D$Double1">
+    <void class="java.awt.geom.Point2D$Double" method="getField">
+     <string>x</string>
+     <void method="set">
+      <object idref="Point2D$Double1">
+       <void class="java.awt.geom.Point2D$Double" method="getField">
+        <string>y</string>
+        <void method="set">
+         <object idref="Point2D$Double1">
+          <void method="setLocation">
+           <double>433.0</double>
+           <double>295.0</double>
+          </void>
+         </object>
+         <double>295.0</double>
+        </void>
+       </void>
+      </object>
+      <double>433.0</double>
+     </void>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>
