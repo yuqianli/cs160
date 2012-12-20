@@ -120,6 +120,11 @@ strong {color:#0d9ce0; font-weight:normal;}
 	Slideshow
 */
 
+#slides {
+	position: absolute;
+	top: 450px;
+}
+
 #slides table {
     margin: 0 auto;
 }
@@ -185,7 +190,7 @@ strong {color:#0d9ce0; font-weight:normal;}
 
 .pagination {
 	margin: 5px auto 0;
-	margin-left: 350px;
+	margin-left: 50px;
 }
 .pagination li {
 	float:left;
@@ -344,7 +349,7 @@ strong {color:#0d9ce0; font-weight:normal;}
 	position:absolute;
 	opacity: 0.8;
 	margin-top:-76px;
-	margin-left:800px;
+	margin-left:500px;
 	}
 	
 .logo b .one {font-size:24px; color:#fff; padding-left:25px;}
